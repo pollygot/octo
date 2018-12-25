@@ -10,8 +10,7 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :octo, OctoWeb.Endpoint,
-  # http: [port: 5000],
-  http: [port: 5000, ip: {127,0,0,1}]
+  http: [port: 5000],
   url: [host: "supapen.com", port: 80],
   cache_static_manifest: "priv/static/manifest.json",
   server: true,
