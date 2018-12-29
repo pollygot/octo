@@ -1,0 +1,52 @@
+<div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <img class="logo" src="https://lh3.googleusercontent.com/Bm_MrLjyFU5r3evfIoEvbPHY4Qowb-pY78pBPaRg2OkXrPpqn0nYWcctIsM6ITrUc1plP5LEve1EFXeWjpOVswh5GiL8zAi03ZgqO5DI4Xmm7Z-h97jZ-aZMfWoGL8Frcuok1qjx0tYmuTykYuhJ4e7kqpTQ-4Ehfn70A1669AOfD0qoln8Xl4J5XxpKd7OEzi5h0OYL2wH7dcJHvgPVOZjvgT0Ok_8WhpON0K0M5FxRzvJ2wd_-mqJ-tmAaG6KobptaLTc1WJcA4SsNl-nHKvY82GT0KiDE4xXh4xSs5LU1ytQfxCbSqPGyyC1xXi9dWb0Bo_iCYCKs93dAenxY-OMFh1l8fZAuUlguKRIs6BvCZunQvwcGfwQt6RWIQ8W8BIno3-dwnwGOYniWMJ9aGrX8bNHPfTChbRoFmul5Ucunx9r-e-iD7nv4Tv62JDh833MoLNxnpG-kY6UBtm3w3PDnKq5LYfabRs3yY0b8UMOw4QMO8VQX_93CJTKRiA8s63--5tkG6dKLpJCvU-cQcrHJPaMXYxwQryED0JNNUiCbB3JJYZs1S28Ly1HOeCNPIPNjhunQYjTJu-374C9CSZYChhg-JNkWRp-JtzNKHoIg3FKG7LmEZUWXS5InA8k8dzuUV6ytX5VWwrOwd_D0j-ijfO3k-0jqrgo7XMTNqysEzXO2Rs20Dek5d56G7Bwa5f8_dG8lEqwJDnf4-w=s278-no" width="28" height="28">
+          <img class="logo" src="https://lh3.googleusercontent.com/ahN9k5weyG1dIwVdPkQK2ITjEfGbTrVPKqxTosBDM-OsECvnoeQnVrftSAN6fYQeb4ayocqiPMQIach1FQOyxgd6moFiNdtwutqMJ_C5zLgyfD4MfZhK3FeZwggDMq3l9HenOnm1ugQ9kmK63oftEMFePO47A8l1xRwNfUdH6qHcy4Zy4CvGtsI2xoBqgLeh1WiZPfNUCemum0HIH3HYPVu1JWeB01GKtdr0Jd0jrOrFuFobISJPxQp1TX77AbhAbXJxA_tcBWTHLpwAWgRvoJmxP5ZpZpudIQ_pqoTXnMcCWdixo5ST3HSRftySTOLd4xB6PJvmEXmVM6EZ3VPKYbwzYG0Uc3KrYBH4mh1XrPojkvmxv4UIteupjI_K5jYFUd9hzn7PW9dvQ03_tQOZS2vZBE2DA0krOibvyyBQ2fWCXU1N1r518GB5s7vPT6Gj_5W_NxR5rvRdZ_NNIsWd8aY-J88LtcH-LhoY-zGUqSx-G-iPcRe99vGNxXfiNJWEQIsAjMKJt7-1tRa_8yKLqr4ieYcc9Vegay_lrrcp1tOcFLOhGiBR3QRZk9tOaoAHhR9GkKFdLMxBxybjC_hQjECzcsHwS2spA5Myhd3SUwx_i1_zVFQ6Y59-tBddagCeWBOozQV43fC6T7wtBWkpfmStSYJ9V7Qp40s5BSTIYfugeNM4paO0F8t8hRg2Ty8R7FFqXsXY-nlis0tOYw=w416-h183-no" width="80" height="28">
+        </a>
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+  
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-start">
+          <%= link "Guides", to: Routes.guide_path(@conn, :index), class: "navbar-item has-text-primary has-text-weight-bold" %>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <%= link "About", to: Routes.page_path(@conn, :show), class: "navbar-item has-text-primary has-text-weight-bold" %>
+            <div class="navbar-dropdown">
+               <%= link "Our Story", to: Routes.page_path(@conn, :show), class: "navbar-item has-text-primary has-text-weight-bold" %>
+               <%= link "Facebook", to: "https://www.facebook.com/whoislani/", class: "navbar-item has-text-primary has-text-weight-bold" %>
+               <%= link "Instagram", to: "https://www.instagram.com/wh0islani/", class: "navbar-item has-text-primary has-text-weight-bold" %>
+            </div>
+          </div>
+  
+          <%= if @current_user do %>
+            <%= case @current_user.role do
+              "admin" -> link "Admin", to: Routes.admin_page_path(@conn, :index), class: "navbar-item has-text-primary has-text-weight-bold"
+              _ -> ""
+              end %>
+          <% end %>              
+        </div>
+  
+  
+        <%= if @current_user do %>
+  
+          <div class="navbar-end">
+            <%= link @current_user.name, to: Routes.user_path(@conn, :show, @current_user), class: "navbar-item has-text-primary has-text-weight-bold" %>
+              <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete", class: "navbar-item has-text-primary has-text-weight-bold" %>
+            </div>
+          </div>
+      
+        <% else %>
+          <div class="navbar-end">
+            <%= link "Register", to: Routes.user_path(@conn, :new), class: "navbar-item has-text-primary has-text-weight-bold" %>
+            <%= link "Log in", to: Routes.session_path(@conn, :new), class: "navbar-item has-text-primary has-text-weight-bold" %>
+          </div>
+        <% end %>
+      </div>    
+    </nav> 
+  </div>

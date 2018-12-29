@@ -1,0 +1,35 @@
+/* This file is for your main application css. */
+@import 'bulma';
+@import "./phoenix.css";
+@charset "utf-8";
+
+// Import fonts
+@import url('https://fonts.googleapis.com/css?family=Baumans:300,400,500,600,700');
+
+// override bulma
+$header-family:Baumans;
+
+.navbar-item, .navbar-link, {
+  font-family: $header-family;
+  font-weight: 700;
+}
+
+#toast {
+  position: fixed;
+  top: 60px;
+  max-width: 400px;
+  margin: 0;
+  right: 25px;
+  z-index: 999;
+  .notification {
+    padding: 5px 10px;
+    box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.05);
+    /*font-family: $header-family;*/
+  }
+}
+
+
+@media (max-width: 768px) { /* Mobile devices */
+  
+
+}

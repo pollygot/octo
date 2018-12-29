@@ -15,7 +15,7 @@ defmodule OctoWeb.Router do
 
   scope "/", OctoWeb do
     pipe_through :browser
-
+    resources "/customers", CustomerController
     get "/", PageController, :index
   end
 
