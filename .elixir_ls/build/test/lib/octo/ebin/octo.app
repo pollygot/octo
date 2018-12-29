@@ -21,5 +21,5 @@
                         'Elixir.OctoWeb.Router.Helpers',
                         'Elixir.OctoWeb.UserSocket']},
               {registered,[]},
-              {vsn,"0.1.4"},
+              {vsn,"0.1.5"},
               {mod,{'Elixir.Octo.Application',[]}}]}.
