@@ -44,16 +44,19 @@
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
+      <%= if @current_customer do %>
+        <div class="navbar-item">
+          <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_customer), method: "delete" %>
         </div>
-      </div>
+      <% else %>
+        <div class="navbar-item">
+          <%= link "Log in", to: Routes.session_path(@conn, :new) %>
+        </div>
+        <div class="navbar-item">
+          <%= link "Register", to: Routes.customer_path(@conn, :new) %>
+        </div>
+      <% end %>
     </div>
+    
   </div>
 </nav>

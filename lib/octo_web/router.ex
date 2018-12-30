@@ -7,6 +7,7 @@ defmodule OctoWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug OctoWeb.Auth
   end
 
   pipeline :api do
@@ -15,8 +16,9 @@ defmodule OctoWeb.Router do
 
   scope "/", OctoWeb do
     pipe_through :browser
-    resources "/customers", CustomerController
     get "/", PageController, :index
+    resources "/customers", CustomerController
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.

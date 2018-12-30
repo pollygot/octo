@@ -10,6 +10,16 @@
   <%= error_tag f, :name %>
 
   <div>
+    <%= inputs_for f, :credential, fn cf -> %>
+      <%= text_input cf, :email, placeholder: "Email" %>
+      <%= error_tag cf, :email %>
+      <br>
+      <%= password_input cf, :password, placeholder: "Password" %>
+      <%= error_tag cf, :password %>
+    <% end %> 
+  </div>
+
+  <div>
     <%= submit "Save" %>
   </div>
 <% end %>

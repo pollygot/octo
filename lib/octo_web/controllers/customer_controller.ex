@@ -3,23 +3,37 @@ defmodule OctoWeb.CustomerController do
 
   alias Octo.Accounts
   alias Octo.Accounts.Customer
+  plug :authenticate when action in [:index, :show]
+
+  defp authenticate(conn, _opts) do
+    if conn.assigns.current_customer do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You must be logged in to access that page")
+      |> redirect(to: Routes.page_path(conn, :index))
+      |> halt()
+    end
+  end
 
   def index(conn, _params) do
     customers = Accounts.list_customers()
     render(conn, "index.html", customers: customers)
   end
 
+  @spec new(Plug.Conn.t(), any()) :: Plug.Conn.t()
   def new(conn, _params) do
     changeset = Accounts.change_customer(%Customer{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"customer" => customer_params}) do
-    case Accounts.create_customer(customer_params) do
+    case Accounts.register_customer(customer_params) do
       {:ok, customer} ->
         conn
-        |> put_flash(:info, "Customer created successfully.")
-        |> redirect(to: Routes.customer_path(conn, :show, customer))
+        |> OctoWeb.Auth.login(customer)
+        |> put_flash(:info, "#{customer.name} created!")
+        |> redirect(to: Routes.customer_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

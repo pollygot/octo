@@ -5,8 +5,34 @@ defmodule Octo.Accounts do
 
   import Ecto.Query, warn: false
   alias Octo.Repo
-
   alias Octo.Accounts.Customer
+
+  def register_customer(attrs \\ %{}) do
+    %Customer{}
+    |> Customer.registration_changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def get_customer_by_email(email) do
+    from(c in Customer, join: a in assoc(c, :credential), where: a.email == ^email)
+    |> Repo.one()
+    |> Repo.preload(:credential)
+  end
+
+  def authenticate_by_email_and_pass(email, given_pass) do
+    customer = get_customer_by_email(email)
+
+    cond do
+      customer && Comeonin.Pbkdf2.checkpw(given_pass, customer.credential.password_hash) ->
+        {:ok, customer}
+      customer ->
+        {:error, :unauthorized}
+      true ->
+        Comeonin.Bcrypt.dummy_checkpw()
+        {:error, :not_found}
+    end
+  end
+
 
   @doc """
   Returns the list of customers.

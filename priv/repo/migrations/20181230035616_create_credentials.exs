@@ -11,6 +11,5 @@ defmodule Octo.Repo.Migrations.CreateCredentials do
     end
 
     create unique_index(:credentials, [:email])
-    create index(:credentials, [:customer_id])
   end
 end
