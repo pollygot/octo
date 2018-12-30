@@ -11,7 +11,8 @@
 
   <body class="has-bg-primary">
       <header class="header">
-        <%# <%= render "navbar.html", conn: @conn, current_user: @current_user %> %>
+      <%# <%= render "navbar.html", conn: @conn, current_user: @current_user %>
+      <%= render "navbar.html", conn: @conn %>
       </header>
 
       <div id="toast" class="">

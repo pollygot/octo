@@ -3,7 +3,7 @@ defmodule Octo.Repo.Migrations.CreateCustomers do
 
   def change do
     create table(:customers) do
-      add :name, :string
+      add :name, :string, null: false
 
       timestamps()
     end

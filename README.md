@@ -116,6 +116,7 @@ References
 		- `cd ~/myproject`
 		- `mix edeliver build release`
 		- `mix edeliver deploy release to production`
+		- m`mix edeliver start production`
 		- `mix edeliver start production`
 		- after you do the above once, bump up the version number in Mix.exs, build the release again, and then hot load it with `mix edeliver upgrade production`. 
 		(if its not working, go through the whole thing again, build, release, stop and start production)
