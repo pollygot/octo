@@ -8,6 +8,7 @@
               {modules,['Elixir.Octo','Elixir.Octo.Accounts',
                         'Elixir.Octo.Accounts.Credential',
                         'Elixir.Octo.Accounts.Customer',
+                        'Elixir.Octo.Accounts.CustomerOrganization',
                         'Elixir.Octo.Accounts.Organization',
                         'Elixir.Octo.Application','Elixir.Octo.DataCase',
                         'Elixir.Octo.Repo','Elixir.OctoWeb',

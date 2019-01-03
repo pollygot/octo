@@ -133,6 +133,8 @@ References
 		- https://medium.com/@andreichernykh/phoenix-simple-authentication-authorization-in-step-by-step-tutorial-form-dc93ea350153
 	f. Postgres privileges
 		- https://www.digitalocean.com/community/tutorials/how-to-use-roles-and-manage-grant-permissions-in-postgresql-on-a-vps--2
+	g. Many to many schemas
+		- https://alchemist.camp/episodes/unified-tagging-system
 8. Ubuntu commands
 	`sudo`: elevates your privileges to root before executing whatever command comes after it
 	`sudo !!`: reruns last command with higher privilages
