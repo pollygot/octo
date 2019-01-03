@@ -61,7 +61,7 @@ defmodule Octo.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_customer!(id), do: Repo.get!(Customer, id)
+  def get_customer!(id), do: Repo.get!(Customer, id) |> Repo.preload(:organizations)
 
   @doc """
   Creates a customer.
