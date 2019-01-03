@@ -1,4 +1,4 @@
-defmodule OctoWeb.OrganizationController do
+defmodule OctoWeb.Dashboard.OrganizationController do
   use OctoWeb, :controller
 
   alias Octo.Accounts

@@ -14,16 +14,21 @@ defmodule OctoWeb.Router do
     plug :accepts, ["json"]
   end
 
+  # guest zone
   scope "/", OctoWeb do
     pipe_through :browser
     get "/", PageController, :index
-    resources "/customers", CustomerController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/customers", CustomerController, only: [:new, :create]
+  end
+
+  # registered user zone
+  scope "/dashboard", OctoWeb.Dashboard, as: :dashboard do
+    pipe_through [:browser, :authenticate_customer]
+    resources "/", PageController, only: [:index]
+    resources "/customers", CustomerController, except: [:new, :create]
     resources "/organizations", OrganizationController
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", OctoWeb do
-  #   pipe_through :api
-  # end
+# I gotta put all the customers edit/update/delete somewhere
 end

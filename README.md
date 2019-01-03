@@ -111,13 +111,15 @@ References
 5. NPM
 	a. See what version you are using
 		- `npm -v`
-		-	`npm install -g npm@latest`
+		- `npm install -g npm@latest`
 6. Build and deploy
 		- `cd ~/myproject`
 		- `mix edeliver build release`
-		- `mix edeliver deploy release to production`
-		- m`mix edeliver start production`
+		- `mix edeliver deploy release to production --version=1.7`
+		- `mix edeliver stop production`
 		- `mix edeliver start production`
+		- `mix edeliver migrate production`
+
 		- after you do the above once, bump up the version number in Mix.exs, build the release again, and then hot load it with `mix edeliver upgrade production`. 
 		(if its not working, go through the whole thing again, build, release, stop and start production)
 7. Useful links 
@@ -140,6 +142,9 @@ References
 	`sudo !!`: reruns last command with higher privilages
 	``su - root` or `su - deploy`: anytime you put a username after `su - ` it will assume the role of that user before running the command you put after it
 	`CTRL + d`: drops out of your current server session
+9. Git commands
+	a. Reset changes since last commit 
+        - `git reset HEAD --hard`
 
 
 

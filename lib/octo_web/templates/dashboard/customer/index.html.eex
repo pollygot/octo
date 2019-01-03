@@ -14,9 +14,9 @@
       <td><%= customer.name %></td>
 
       <td>
-        <%= link "Show", to: Routes.customer_path(@conn, :show, customer) %>
-        <%= link "Edit", to: Routes.customer_path(@conn, :edit, customer) %>
-        <%= link "Delete", to: Routes.customer_path(@conn, :delete, customer), method: :delete, data: [confirm: "Are you sure?"] %>
+        <%= link "Show", to: Routes.dashboard_customer_path(@conn, :show, customer) %>
+        <%= link "Edit", to: Routes.dashboard_customer_path(@conn, :edit, customer) %>
+        <%= link "Delete", to: Routes.dashboard_customer_path(@conn, :delete, customer), method: :delete, data: [confirm: "Are you sure?"] %>
       </td>
     </tr>
 <% end %>
