@@ -29,5 +29,5 @@
                         'Elixir.OctoWeb.SessionView',
                         'Elixir.OctoWeb.UserSocket']},
               {registered,[]},
-              {vsn,"0.1.6"},
+              {vsn,"0.1.7"},
               {mod,{'Elixir.Octo.Application',[]}}]}.
