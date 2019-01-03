@@ -13,7 +13,7 @@ defmodule Octo.Accounts.CustomerOrganization do
   @doc false
   def changeset(customer_organization, attrs) do
     customer_organization
-    |> cast(attrs, [])
+    |> cast(attrs, [:customer_id, :organization_id])
     |> validate_required([])
   end
 end

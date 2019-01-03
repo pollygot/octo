@@ -5,6 +5,9 @@
   <li>
     <strong>Name:</strong>
     <%= @customer.name %>
+    <br>
+    <strong>Organizations:</strong>
+    <%= @customer.organizations |> Enum.map(&(&1.name)) |> Enum.join(", ") %>
   </li>
 
 </ul>
