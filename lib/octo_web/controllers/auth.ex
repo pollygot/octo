@@ -1,5 +1,7 @@
 defmodule OctoWeb.Auth do
   import Plug.Conn
+  import Phoenix.Controller
+  alias OctoWeb.Router.Helpers, as: Routes
   alias Octo.Accounts
 
   def init(opts), do: opts
@@ -27,6 +29,17 @@ defmodule OctoWeb.Auth do
 
   def logout(conn) do
     configure_session(conn, drop: true)
+  end
+
+  def authenticate_customer(conn, _opts) do
+    if conn.assigns.current_customer do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You must be logged in to access that page")
+      |> redirect(to: Routes.page_path(conn, :index))
+      |> halt()
+    end
   end
 
 end

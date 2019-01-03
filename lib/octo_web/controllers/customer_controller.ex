@@ -3,18 +3,8 @@ defmodule OctoWeb.CustomerController do
 
   alias Octo.Accounts
   alias Octo.Accounts.Customer
-  plug :authenticate when action in [:index, :show]
+  plug :authenticate_customer when action in [:index, :show]
 
-  defp authenticate(conn, _opts) do
-    if conn.assigns.current_customer do
-      conn
-    else
-      conn
-      |> put_flash(:error, "You must be logged in to access that page")
-      |> redirect(to: Routes.page_path(conn, :index))
-      |> halt()
-    end
-  end
 
   def index(conn, _params) do
     customers = Accounts.list_customers()

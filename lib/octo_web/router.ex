@@ -19,6 +19,7 @@ defmodule OctoWeb.Router do
     get "/", PageController, :index
     resources "/customers", CustomerController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/organizations", OrganizationController
   end
 
   # Other scopes may use custom stacks.

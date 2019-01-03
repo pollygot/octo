@@ -23,6 +23,7 @@ defmodule OctoWeb do
 
       import Plug.Conn
       import OctoWeb.Gettext
+      import OctoWeb.Auth, only: [authenticate_customer: 2] # New import
       alias OctoWeb.Router.Helpers, as: Routes
     end
   end
@@ -50,6 +51,7 @@ defmodule OctoWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import OctoWeb.Auth, only: [authenticate_customer: 2] # New import
     end
   end
 
