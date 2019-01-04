@@ -92,10 +92,14 @@ defmodule Octo.Accounts do
 
   alias Octo.Accounts.Organization
 
+
+  def grab_organization(%Customer{organizations: org}), do: org
+
   def list_organizations do
     Repo.all(Organization)
   end
 
+  @spec get_organization!(any()) :: any()
   def get_organization!(id), do: Repo.get!(Organization, id)
 
   def create_organization(attrs \\ %{}) do

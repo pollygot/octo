@@ -3,3 +3,5 @@
 <%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_path(@conn, :update, @organization)) %>
 
 <span><%= link "Back", to: Routes.dashboard_organization_path(@conn, :index) %></span>
+
+<%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, @organization), method: :delete, data: [confirm: "Are you sure?"] %>

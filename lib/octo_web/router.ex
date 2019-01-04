@@ -28,6 +28,7 @@ defmodule OctoWeb.Router do
     resources "/", PageController, only: [:index]
     resources "/customers", CustomerController, except: [:new, :create]
     resources "/organizations", OrganizationController
+    resources "/projects", ProjectController
   end
 
 # I gotta put all the customers edit/update/delete somewhere

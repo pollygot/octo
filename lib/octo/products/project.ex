@@ -13,7 +13,7 @@ defmodule Octo.Products.Project do
   @doc false
   def changeset(project, attrs) do
     project
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, [:name, :organization_id])
+    |> validate_required([:name, :organization_id])
   end
 end

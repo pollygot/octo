@@ -115,7 +115,7 @@ References
 6. Build and deploy
 		- `cd ~/myproject`
 		- `mix edeliver build release`
-		- `mix edeliver deploy release to production --version=1.9`
+		- `mix edeliver deploy release to production --version=2.0`
 		- `mix edeliver stop production`
 		- `mix edeliver start production`
 		- `mix edeliver migrate production`
@@ -181,3 +181,6 @@ Questions
     2. SOLUTION for my problem - Webpack may not have put the file in priv/static, so its not being sent to the browser. This is why the browser is only rendering HTML and no front end stuff. There are some settings that Distillery uses that may have affected the Webpack build. Look in Paul’s eDeliver config for “pre erlang clean and compile” and add that into my eDeliver config. I’ll also have to make some changes to that because its using brunch, so wherever i see brunch that will fail. (see if i can find a web pack version of this?) 
 5. If i want to have 2 sites, do i need 2 deploy users
     1. If i have 2 files that have the same version ? It only deploys on the server. You can only have one port listening to each port. one of my ports is on 4000 and the other is on 4001. It will detect the domain on the outside, based on this domain, which sends the request traffic through 4001 to the place where the production files sit.
+
+
+# projects = Products.list_organization_projects(organizations)
