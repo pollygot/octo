@@ -115,7 +115,7 @@ References
 6. Build and deploy
 		- `cd ~/myproject`
 		- `mix edeliver build release`
-		- `mix edeliver deploy release to production --version=1.7`
+		- `mix edeliver deploy release to production --version=1.9`
 		- `mix edeliver stop production`
 		- `mix edeliver start production`
 		- `mix edeliver migrate production`
