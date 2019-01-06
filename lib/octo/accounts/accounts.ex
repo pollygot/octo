@@ -3,10 +3,17 @@ defmodule Octo.Accounts do
   import Ecto.Query, warn: false
   alias Octo.Repo
   alias Octo.Accounts.Customer
+  alias Octo.Accounts.Organization
   alias Octo.Accounts.CustomerOrganization
 
-  def add_customer_organization(c_id, o_id) do
-    CustomerOrganization.changeset(%CustomerOrganization{}, %{customer_id: c_id, organization_id: o_id})
+  def add_customer_organization(customer, organization) do
+    CustomerOrganization.changeset(%CustomerOrganization{}, %{customer_id: customer.id, organization_id: organization.id})
+    |> Repo.insert()
+  end
+
+  def create_organization(attrs \\ %{}) do
+    %Organization{}
+    |> Organization.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -102,11 +109,7 @@ defmodule Octo.Accounts do
   @spec get_organization!(any()) :: any()
   def get_organization!(id), do: Repo.get!(Organization, id)
 
-  def create_organization(attrs \\ %{}) do
-    %Organization{}
-    |> Organization.changeset(attrs)
-    |> Repo.insert()
-  end
+
 
   def update_organization(%Organization{} = organization, attrs) do
     organization
