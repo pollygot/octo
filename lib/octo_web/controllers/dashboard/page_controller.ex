@@ -8,11 +8,10 @@ defmodule OctoWeb.Dashboard.PageController do
   end
 
   def index(conn, _params, current_customer) do
-    organizations = Accounts.grab_organization(current_customer)
-    projects = "hey"
+    organizations = Accounts.list_customer_organizations(current_customer)
+
     conn
     |> assign(:organizations, organizations)
-    |> assign(:projects, projects)
     |> render("index.html", current_customer: current_customer)
   end
 

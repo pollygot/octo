@@ -7,9 +7,15 @@ defmodule Octo.Accounts do
   alias Octo.Accounts.CustomerOrganization
 
   def add_customer_organization(customer, organization) do
-    CustomerOrganization.changeset(%CustomerOrganization{}, %{customer_id: customer.id, organization_id: organization.id})
+    %CustomerOrganization{}
+    |> CustomerOrganization.changeset(%{customer_id: customer.id, organization_id: organization.id})
     |> Repo.insert()
   end
+
+  def list_customer_organizations(%Customer{organizations: org}) do
+    org |> Enum.map(fn (x) -> x.name end)
+  end
+
 
   def create_organization(attrs \\ %{}) do
     %Organization{}
@@ -99,8 +105,6 @@ defmodule Octo.Accounts do
 
   alias Octo.Accounts.Organization
 
-
-  def grab_organization(%Customer{organizations: org}), do: org
 
   def list_organizations do
     Repo.all(Organization)

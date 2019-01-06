@@ -3,13 +3,15 @@
 <br>
 
 <%= for organization <- @organizations do %>
-  <%= link organization.name, to: Routes.dashboard_organization_path(@conn, :edit, organization), class: "subtitle" %>
+  <%= link organization, to: Routes.dashboard_organization_path(@conn, :edit, organization), class: "subtitle" %>
+  <br>
 <% end %>
 
+<%= inspect @organizations %>
 
 <h1><%= link "New Organization", to: Routes.dashboard_organization_path(@conn, :new) %><h1>
 
 <br>
 
-<h1 class="title"><%= @projects %></h1>
+<%# <h1 class="title"><%= @projects %></h1> %>
 

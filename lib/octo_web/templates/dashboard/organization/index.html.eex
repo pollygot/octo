@@ -10,15 +10,12 @@
   </thead>
   <tbody>
 <%= for organization <- @organizations do %>
-    <tr>
-      <td><%= organization.name %></td>
-
-      <td>
-        <%= link "Show", to: Routes.dashboard_organization_path(@conn, :show, organization) %>
-        <%= link "Edit", to: Routes.dashboard_organization_path(@conn, :edit, organization) %>
-        <%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, organization), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
+    <br>
+    <%= organization.name %>
+      <%= link "Show", to: Routes.dashboard_organization_path(@conn, :show, organization) %>
+      <%= link "Edit", to: Routes.dashboard_organization_path(@conn, :edit, organization) %>
+      <%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, organization), method: :delete, data: [confirm: "Are you sure?"] %>
+    <br>
 <% end %>
   </tbody>
 </table>
