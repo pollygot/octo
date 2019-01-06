@@ -19,7 +19,7 @@ defmodule OctoWeb.Dashboard.OrganizationController do
       {:ok, organization} ->
         conn
         |> put_flash(:info, "Organization created successfully.")
-        |> redirect(to: Routes.organization_path(conn, :show, organization))
+        |> redirect(to: Routes.dashboard_organization_path(conn, :show, organization))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule OctoWeb.Dashboard.OrganizationController do
       {:ok, organization} ->
         conn
         |> put_flash(:info, "Organization updated successfully.")
-        |> redirect(to: Routes.organization_path(conn, :show, organization))
+        |> redirect(to: Routes.dashboard_organization_path(conn, :show, organization))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", organization: organization, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule OctoWeb.Dashboard.OrganizationController do
 
     conn
     |> put_flash(:info, "Organization deleted successfully.")
-    |> redirect(to: Routes.organization_path(conn, :index))
+    |> redirect(to: Routes.dashboard_organization_path(conn, :index))
   end
 end

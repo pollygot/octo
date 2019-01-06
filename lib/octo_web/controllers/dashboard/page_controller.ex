@@ -1,6 +1,5 @@
 defmodule OctoWeb.Dashboard.PageController do
   use OctoWeb, :controller
-  alias Octo.Products
   alias Octo.Accounts
 
   def action(conn, _) do

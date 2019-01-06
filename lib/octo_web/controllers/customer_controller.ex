@@ -15,7 +15,7 @@ defmodule OctoWeb.CustomerController do
         conn
         |> OctoWeb.Auth.login(customer)
         |> put_flash(:info, "#{customer.name} created!")
-        |> redirect(to: Routes.customer_path(conn, :index))
+        |> redirect(to: Routes.dashboard_customer_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
