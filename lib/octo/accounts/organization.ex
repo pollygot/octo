@@ -6,7 +6,7 @@ defmodule Octo.Accounts.Organization do
 
   schema "organizations" do
     field :name, :string
-    many_to_many(:customers, Customer, join_through: "customers_organizations")
+    many_to_many :customers, Customer, join_through: "customers_organizations", on_delete: :delete_all
 
     timestamps()
   end

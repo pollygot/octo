@@ -7,7 +7,7 @@ defmodule Octo.Accounts.Customer do
   schema "customers" do
     field :name, :string
     has_one :credential, Credential
-    many_to_many(:organizations, Organization, join_through: "customers_organizations")
+    many_to_many :organizations, Organization, join_through: "customers_organizations", on_delete: :delete_all
 
     timestamps()
   end
