@@ -1,17 +1,17 @@
 <h1 class="title"><%= @current_customer.name %></h1>
-
+<br>
+<h1><%= link "New Organization", to: Routes.dashboard_organization_path(@conn, :new) %><h1>
 <br>
 
 <%= for organization <- @organizations do %>
-  <%= link organization, to: Routes.dashboard_organization_path(@conn, :edit, organization), class: "subtitle" %>
+  <%= organization.name %>
+  <br>
+    <%= for organization_project <- @organization_projects do %>
+      <%= if organization.name == organization_project.organization.name do %>
+        <%= organization_project.name %>
+      <% end %> 
+    <br>
+    <% end %>
+
   <br>
 <% end %>
-
-<%= inspect @organizations %>
-
-<h1><%= link "New Organization", to: Routes.dashboard_organization_path(@conn, :new) %><h1>
-
-<br>
-
-<%# <h1 class="title"><%= @projects %></h1> %>
-

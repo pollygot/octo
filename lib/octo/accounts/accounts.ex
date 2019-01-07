@@ -12,10 +12,7 @@ defmodule Octo.Accounts do
     |> Repo.insert()
   end
 
-  def list_customer_organizations(%Customer{organizations: org}) do
-    org |> Enum.map(fn (x) -> x.name end)
-  end
-
+  def list_customer_organizations(%Customer{organizations: org}), do: org
 
   def create_organization(attrs \\ %{}) do
     %Organization{}

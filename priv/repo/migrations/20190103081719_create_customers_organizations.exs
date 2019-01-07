@@ -3,8 +3,8 @@ defmodule Octo.Repo.Migrations.CreateCustomersOrganizations do
 
   def change do
     create table(:customers_organizations) do
-      add :customer_id, references(:customers, on_delete: :nothing)
-      add :organization_id, references(:organizations, on_delete: :nothing)
+      add :customer_id, references(:customers, on_delete: :delete_all)
+      add :organization_id, references(:organizations, on_delete: :delete_all)
 
       timestamps()
     end

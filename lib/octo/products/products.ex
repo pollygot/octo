@@ -8,10 +8,15 @@ defmodule Octo.Products do
   alias Octo.Products.Project
   alias Octo.Accounts.Organization
 
+  def list_only_organization_projects(list_of_projects) do
+    Enum.map(list_of_projects, fn (x) -> x.name end)
+  end
+
   def list_organization_projects(%Organization{} = organization) do
     Project
     |> organization_projects_query(organization)
     |> Repo.all()
+    |> Repo.preload(:organization)
   end
 
   def get_organization_project!(%Organization{} = organization, id) do
