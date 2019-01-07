@@ -14,16 +14,12 @@ defmodule OctoWeb.Dashboard.OrganizationController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  @spec create(
-          atom() | %{__struct__: Phoenix.Socket | Plug.Conn | URI, assigns: atom() | map()},
-          map()
-        ) :: Plug.Conn.t()
   def create(conn, %{"organization" => organization_params}) do
     case Accounts.create_organization(organization_params) do
       {:ok, organization} ->
         conn
         |> put_flash(:info, "Organization created successfully.")
-        |> redirect(to: Routes.dashboard_organization_path(conn, :show, organization))
+        |> redirect(to: Routes.dashboard_page_path(conn, :index))
 
         Accounts.add_customer_organization(conn.assigns.current_customer, organization)
 

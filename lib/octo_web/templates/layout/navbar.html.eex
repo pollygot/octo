@@ -46,14 +46,14 @@
     <div class="navbar-end">
       <%= if @current_customer do %>
         <div class="navbar-item">
-          <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_customer), method: "delete" %>
+          <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_customer), method: "delete", class: "has-text-dark" %>
         </div>
       <% else %>
         <div class="navbar-item">
-          <%= link "Log in", to: Routes.session_path(@conn, :new) %>
+          <%= link "Log in", to: Routes.session_path(@conn, :new), class: "has-text-dark" %>
         </div>
         <div class="navbar-item">
-          <%= link "Register", to: Routes.customer_path(@conn, :new) %>
+          <%= link "Register", to: Routes.customer_path(@conn, :new), class: "has-text-dark" %>
         </div>
       <% end %>
     </div>
