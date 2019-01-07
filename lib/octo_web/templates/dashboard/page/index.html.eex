@@ -1,17 +1,25 @@
-<h1 class="title"><%= @current_customer.name %></h1>
-<br>
-<h1><%= link "New Organization", to: Routes.dashboard_organization_path(@conn, :new) %><h1>
-<br>
+<section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8">
+          <h1 class="title is-size-1"><%= @current_customer.name %></h1>
+        </div>
+        <div class="column is-4">
+          <%= link "New Organization", to: Routes.dashboard_organization_path(@conn, :new), class: "button is-dark" %>
+        </div>
+      </div>
+      <%= for organization <- @organizations do %>
+      <div class="dashboard_organization">
+        <h1 class="is-size-2"><%= organization.name %></h1>
+        <%= for organization_project <- @organization_projects do %>
+            <%= if organization.name == organization_project.organization.name do %>
+              <div class="dashboard_projects">
+                <h1 class="is-size-3"><%= organization_project.name %></h1>
+              </div>
+            <% end %> 
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </section>
 
-<%= for organization <- @organizations do %>
-  <%= organization.name %>
-  <br>
-    <%= for organization_project <- @organization_projects do %>
-      <%= if organization.name == organization_project.organization.name do %>
-        <%= organization_project.name %>
-      <% end %> 
-    <br>
-    <% end %>
-
-  <br>
-<% end %>
