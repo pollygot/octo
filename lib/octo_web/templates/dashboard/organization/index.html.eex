@@ -1,23 +1,21 @@
-<h1>Listing Organizations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for organization <- @organizations do %>
-    <br>
-    <%= organization.name %>
-      <%= link "Show", to: Routes.dashboard_organization_path(@conn, :show, organization) %>
-      <%= link "Edit", to: Routes.dashboard_organization_path(@conn, :edit, organization) %>
-      <%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, organization), method: :delete, data: [confirm: "Are you sure?"] %>
-    <br>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Organization", to: Routes.dashboard_organization_path(@conn, :new) %></span>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-8">
+        <h1 class="title is-1 has-text-dark">Listing Organization</h1>
+      </div>
+      <div class="column is-4">
+        <%= link "New Organization", to: Routes.dashboard_organization_path(@conn, :new), class: "button is-dark" %>
+      </div>
+    </div>
+      <%= for organization <- @organizations do %>
+        <br>
+        <h1 class="is-size-4"><%= organization.name %></h1>
+        <%= link "Show", to: Routes.dashboard_organization_path(@conn, :show, organization), class: "button is-dark" %>
+        <%= link "Edit", to: Routes.dashboard_organization_path(@conn, :edit, organization), class: "button is-dark" %>
+        <%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, organization), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
+        <br>
+      <% end %>
+		</div>
+  </div>
+</section>

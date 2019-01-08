@@ -6,6 +6,8 @@
         </div>
         <div class="column is-4">
           <%= link "New Organization", to: Routes.dashboard_organization_path(@conn, :new), class: "button is-dark" %>
+          <%= link "Join Organization", to: Routes.dashboard_organization_path(@conn, :index), class: "button is-dark" %>
+
         </div>
       </div>
       <%= for organization <- @organizations do %>
