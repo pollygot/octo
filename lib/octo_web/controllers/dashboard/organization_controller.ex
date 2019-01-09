@@ -15,13 +15,11 @@ defmodule OctoWeb.Dashboard.OrganizationController do
   end
 
   def create(conn, %{"organization" => organization_params}) do
-    case Accounts.create_organization(organization_params) do
+    case Accounts.create_organization(conn.assigns.current_customer, organization_params) do
       {:ok, organization} ->
         conn
         |> put_flash(:info, "Organization created successfully.")
         |> redirect(to: Routes.dashboard_page_path(conn, :index))
-
-        Accounts.add_customer_organization(conn.assigns.current_customer, organization)
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

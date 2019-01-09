@@ -14,10 +14,15 @@ defmodule Octo.Accounts do
 
   def list_customer_organizations(%Customer{organizations: org}), do: org
 
-  def create_organization(attrs \\ %{}) do
+  def create_organization(%Customer{} = customer, attrs \\ %{}) do
+    customer_changeset = Ecto.Changeset.change(customer)
+
     %Organization{}
     |> Organization.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:customers, [customer_changeset])
     |> Repo.insert()
+
+
   end
 
   def register_customer(attrs \\ %{}) do

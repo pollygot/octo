@@ -10,5 +10,7 @@ defmodule Octo.Repo.Migrations.CreateCustomersOrganizations do
     end
 
     create unique_index(:customers_organizations, [:customer_id, :organization_id])
+    create index(:customers_organizations, [:customer_id])
+    create index(:customers_organizations, [:organization_id])
   end
 end
