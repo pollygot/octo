@@ -4,6 +4,23 @@ defmodule OctoWeb.Dashboard.OrganizationController do
   alias Octo.Accounts
   alias Octo.Accounts.Organization
 
+  def add_customer_organization(conn, %{"id" => id}) do
+    organization = Accounts.get_organization!(id)
+
+    case Accounts.link_customer_and_organization(conn.assigns.current_customer, organization) do
+      {:ok, organization} ->
+        conn
+        |> put_flash(:info, "Organization joined!")
+        |> redirect(to: Routes.dashboard_page_path(conn, :index))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        conn
+        |> put_flash(:info, "Hmm...something went wrong!")
+        |> redirect(to: Routes.dashboard_page_path(conn, :index))
+    end
+
+  end
+
   def index(conn, _params) do
     organizations = Accounts.list_organizations()
     render(conn, "index.html", organizations: organizations)

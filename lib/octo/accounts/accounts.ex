@@ -4,12 +4,17 @@ defmodule Octo.Accounts do
   alias Octo.Repo
   alias Octo.Accounts.Customer
   alias Octo.Accounts.Organization
-  alias Octo.Accounts.CustomerOrganization
 
-  def add_customer_organization(customer, organization) do
-    %CustomerOrganization{}
-    |> CustomerOrganization.changeset(%{customer_id: customer.id, organization_id: organization.id})
-    |> Repo.insert()
+
+  def link_customer_and_organization(%Customer{} = customer, %Organization{} = organization) do
+    organization = Repo.preload(organization, :customers)
+    customers = organization.customers ++ [customer]
+                |> Enum.map(&Ecto.Changeset.change/1)
+
+    organization
+    |> Ecto.Changeset.change
+    |> Ecto.Changeset.put_assoc(:customers, customers)
+    |> Repo.update
   end
 
   def list_customer_organizations(%Customer{organizations: org}), do: org

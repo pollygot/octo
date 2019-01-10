@@ -11,7 +11,7 @@
       <%= for organization <- @organizations do %>
         <br>
         <h1 class="is-size-4"><%= organization.name %></h1>
-        <%= link "Show", to: Routes.dashboard_organization_path(@conn, :show, organization), class: "button is-dark" %>
+        <%= link "Join", to: Routes.dashboard_organization_path(@conn, :add_customer_organization, organization), class: "button is-dark" %>
         <%= link "Edit", to: Routes.dashboard_organization_path(@conn, :edit, organization), class: "button is-dark" %>
         <%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, organization), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
         <br>

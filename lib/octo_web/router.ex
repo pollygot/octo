@@ -29,6 +29,7 @@ defmodule OctoWeb.Router do
     resources "/customers", CustomerController, except: [:new, :create]
     resources "/organizations", OrganizationController
     resources "/projects", ProjectController
+    get("add_customer_organization/:id", OrganizationController, :add_customer_organization)
   end
 
 # I gotta put all the customers edit/update/delete somewhere
