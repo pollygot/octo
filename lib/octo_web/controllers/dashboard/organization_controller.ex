@@ -3,6 +3,7 @@ defmodule OctoWeb.Dashboard.OrganizationController do
 
   alias Octo.Accounts
   alias Octo.Accounts.Organization
+  alias Octo.Products
 
   def add_customer_organization(conn, %{"id" => id}) do
     organization = Accounts.get_organization!(id)
@@ -45,8 +46,11 @@ defmodule OctoWeb.Dashboard.OrganizationController do
 
   def show(conn, %{"id" => id}) do
     organization = Accounts.get_organization!(id)
-    render(conn, "show.html", organization: organization)
+    organization_projects = Products.list_organization_projects(organization)
+    render(conn, "show.html", organization: organization, organization_projects: organization_projects)
   end
+
+
 
   def edit(conn, %{"id" => id}) do
     organization = Accounts.get_organization!(id)
