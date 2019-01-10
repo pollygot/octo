@@ -30,11 +30,17 @@ defmodule Octo.Products do
   end
 
 
-  def list_projects do
-    Repo.all(Project)
+  def list_projects(organization) do
+    Project
+    |> where([p], p.organization_id == ^organization.id)
+    |> Repo.all()
   end
 
-  def get_project!(id), do: Repo.get!(Project, id)
+  def get_project!(organization, id) do
+    Project
+    |> where([p], p.organization_id == ^organization.id)
+    |> Repo.get!(id)
+  end
 
   def create_project(attrs \\ %{}) do
     %Project{}

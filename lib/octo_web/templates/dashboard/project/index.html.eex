@@ -20,4 +20,4 @@
   </tbody>
 </table>
 
-<span><%= link "New Project", to: Routes.dashboard_organization_project_path(@conn, :new) %></span>
+<span><%= link "New Project", to: Routes.dashboard_organization_project_path(@conn, :new, @organization) %></span>

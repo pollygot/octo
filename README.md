@@ -137,6 +137,8 @@ References
 		- https://www.digitalocean.com/community/tutorials/how-to-use-roles-and-manage-grant-permissions-in-postgresql-on-a-vps--2
 	g. Many to many schemas
 		- https://alchemist.camp/episodes/unified-tagging-system
+	h. Nested routes
+		- https://www.smoothterminal.com/articles/nested-resources-in-phoenix
 8. Ubuntu commands
 	`sudo`: elevates your privileges to root before executing whatever command comes after it
 	`sudo !!`: reruns last command with higher privilages
