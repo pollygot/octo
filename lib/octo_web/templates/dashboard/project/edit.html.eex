@@ -2,4 +2,4 @@
 
 <%= render "form.html", Map.put(assigns, :action, Routes.dashboard_project_path(@conn, :update, @project)) %>
 
-<span><%= link "Back", to: Routes.dashboard_project_path(@conn, :index) %></span>
+<span><%= link "Back", to: Routes.dashboard_organization_project_path(@conn, :index) %></span>

@@ -18,7 +18,7 @@
 
             <%= if organization.name == organization_project.organization.name do %>
               <div class="dashboard_projects">
-                <%= link organization_project.name, to: Routes.dashboard_project_path(@conn, :show, organization_project), class: "is-size-3 has-text-dark" %>
+                <%= link organization_project.name, to: Routes.dashboard_organization_project_path(@conn, :show, organization, organization_project.id), class: "is-size-3 has-text-dark" %>
               </div>
             <% end %> 
         <% end %>

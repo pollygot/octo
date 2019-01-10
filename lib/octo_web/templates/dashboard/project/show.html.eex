@@ -8,6 +8,3 @@
   </li>
 
 </ul>
-
-<span><%= link "Edit", to: Routes.dashboard_project_path(@conn, :edit, @project) %></span>
-<span><%= link "Back", to: Routes.dashboard_project_path(@conn, :index) %></span>

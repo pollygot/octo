@@ -27,8 +27,11 @@ defmodule OctoWeb.Router do
     pipe_through [:browser, :authenticate_customer]
     resources "/", PageController, only: [:index]
     resources "/customers", CustomerController, except: [:new, :create]
-    resources "/organizations", OrganizationController
-    resources "/projects", ProjectController
+
+    resources "/organizations", OrganizationController do
+      resources "/projects", ProjectController
+    end
+
     get("add_customer_organization/:id", OrganizationController, :add_customer_organization)
   end
 
