@@ -1,0 +1,18 @@
+<h1>Show Flag</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @flag.name %>
+  </li>
+
+  <li>
+    <strong>Is on:</strong>
+    <%= @flag.is_on %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.flag_path(@conn, :edit, @flag) %></span>
+<span><%= link "Back", to: Routes.flag_path(@conn, :index) %></span>

@@ -61,4 +61,65 @@ defmodule Octo.ProductsTest do
       assert %Ecto.Changeset{} = Products.change_project(project)
     end
   end
+
+  describe "flags" do
+    alias Octo.Products.Flag
+
+    @valid_attrs %{is_on: true, name: "some name"}
+    @update_attrs %{is_on: false, name: "some updated name"}
+    @invalid_attrs %{is_on: nil, name: nil}
+
+    def flag_fixture(attrs \\ %{}) do
+      {:ok, flag} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Products.create_flag()
+
+      flag
+    end
+
+    test "list_flags/0 returns all flags" do
+      flag = flag_fixture()
+      assert Products.list_flags() == [flag]
+    end
+
+    test "get_flag!/1 returns the flag with given id" do
+      flag = flag_fixture()
+      assert Products.get_flag!(flag.id) == flag
+    end
+
+    test "create_flag/1 with valid data creates a flag" do
+      assert {:ok, %Flag{} = flag} = Products.create_flag(@valid_attrs)
+      assert flag.is_on == true
+      assert flag.name == "some name"
+    end
+
+    test "create_flag/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Products.create_flag(@invalid_attrs)
+    end
+
+    test "update_flag/2 with valid data updates the flag" do
+      flag = flag_fixture()
+      assert {:ok, %Flag{} = flag} = Products.update_flag(flag, @update_attrs)
+      assert flag.is_on == false
+      assert flag.name == "some updated name"
+    end
+
+    test "update_flag/2 with invalid data returns error changeset" do
+      flag = flag_fixture()
+      assert {:error, %Ecto.Changeset{}} = Products.update_flag(flag, @invalid_attrs)
+      assert flag == Products.get_flag!(flag.id)
+    end
+
+    test "delete_flag/1 deletes the flag" do
+      flag = flag_fixture()
+      assert {:ok, %Flag{}} = Products.delete_flag(flag)
+      assert_raise Ecto.NoResultsError, fn -> Products.get_flag!(flag.id) end
+    end
+
+    test "change_flag/1 returns a flag changeset" do
+      flag = flag_fixture()
+      assert %Ecto.Changeset{} = Products.change_flag(flag)
+    end
+  end
 end

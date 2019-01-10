@@ -29,7 +29,9 @@ defmodule OctoWeb.Router do
     resources "/customers", CustomerController, except: [:new, :create]
 
     resources "/organizations", OrganizationController do
-      resources "/projects", ProjectController
+      resources "/projects", ProjectController do
+        resources "/flags", FlagController
+      end
     end
 
     get("add_customer_organization/:id", OrganizationController, :add_customer_organization)
