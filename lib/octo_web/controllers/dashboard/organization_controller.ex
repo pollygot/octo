@@ -8,12 +8,12 @@ defmodule OctoWeb.Dashboard.OrganizationController do
     organization = Accounts.get_organization!(id)
 
     case Accounts.link_customer_and_organization(conn.assigns.current_customer, organization) do
-      {:ok, organization} ->
+      {:ok, _organization} ->
         conn
         |> put_flash(:info, "Organization joined!")
         |> redirect(to: Routes.dashboard_page_path(conn, :index))
 
-      {:error, %Ecto.Changeset{} = changeset} ->
+      {:error, %Ecto.Changeset{}} ->
         conn
         |> put_flash(:info, "Hmm...something went wrong!")
         |> redirect(to: Routes.dashboard_page_path(conn, :index))
@@ -33,7 +33,7 @@ defmodule OctoWeb.Dashboard.OrganizationController do
 
   def create(conn, %{"organization" => organization_params}) do
     case Accounts.create_organization(conn.assigns.current_customer, organization_params) do
-      {:ok, organization} ->
+      {:ok, _organization} ->
         conn
         |> put_flash(:info, "Organization created successfully.")
         |> redirect(to: Routes.dashboard_page_path(conn, :index))

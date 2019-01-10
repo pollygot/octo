@@ -12,11 +12,13 @@
       </div>
       <%= for organization <- @organizations do %>
       <div class="dashboard_organization">
-        <h1 class="is-size-2"><%= organization.name %></h1>
+        <%= link organization.name, to: Routes.dashboard_organization_path(@conn, :show, organization), class: "is-size-2 has-text-dark" %>
+
         <%= for organization_project <- @organization_projects do %>
+
             <%= if organization.name == organization_project.organization.name do %>
               <div class="dashboard_projects">
-                <h1 class="is-size-3"><%= organization_project.name %></h1>
+                <%= link organization_project.name, to: Routes.dashboard_project_path(@conn, :show, organization_project), class: "is-size-3 has-text-dark" %>
               </div>
             <% end %> 
         <% end %>
