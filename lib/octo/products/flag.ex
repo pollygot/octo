@@ -14,7 +14,7 @@ defmodule Octo.Products.Flag do
   @doc false
   def changeset(flag, attrs) do
     flag
-    |> cast(attrs, [:name, :is_on])
-    |> validate_required([:name, :is_on])
+    |> cast(attrs, [:name, :is_on, :project_id])
+    |> validate_required([:name, :is_on, :project_id])
   end
 end

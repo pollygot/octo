@@ -19,7 +19,6 @@ defmodule OctoWeb.Dashboard.OrganizationController do
         |> put_flash(:info, "Hmm...something went wrong!")
         |> redirect(to: Routes.dashboard_page_path(conn, :index))
     end
-
   end
 
   def index(conn, _params) do

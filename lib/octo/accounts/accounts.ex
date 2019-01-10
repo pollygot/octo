@@ -26,8 +26,6 @@ defmodule Octo.Accounts do
     |> Organization.changeset(attrs)
     |> Ecto.Changeset.put_assoc(:customers, [customer_changeset])
     |> Repo.insert()
-
-
   end
 
   def register_customer(attrs \\ %{}) do
@@ -112,15 +110,11 @@ defmodule Octo.Accounts do
 
   alias Octo.Accounts.Organization
 
-
   def list_organizations do
     Repo.all(Organization)
   end
 
-  @spec get_organization!(any()) :: any()
   def get_organization!(id), do: Repo.get!(Organization, id)
-
-
 
   def update_organization(%Organization{} = organization, attrs) do
     organization

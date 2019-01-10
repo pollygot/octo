@@ -5,7 +5,7 @@
           <h1 class="title is-size-1"><%= @project.name %></h1>
         </div>
         <div class="column is-4">
-          <%= link "New Project", to: Routes.dashboard_organization_project_path(@conn, :new, @organization), class: "button is-dark" %>
+          <%= link "New Flag", to: Routes.dashboard_organization_project_flag_path(@conn, :new, @organization, @project), class: "button is-dark" %>
         </div>
       </div>
     </div>

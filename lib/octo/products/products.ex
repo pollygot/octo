@@ -74,8 +74,10 @@ defmodule Octo.Products do
       [%Flag{}, ...]
 
   """
-  def list_flags do
-    Repo.all(Flag)
+  def list_flags(project) do
+    Flag
+    |> where([f], f.project_id == ^project.id)
+    |> Repo.all()
   end
 
   @doc """
@@ -92,7 +94,11 @@ defmodule Octo.Products do
       ** (Ecto.NoResultsError)
 
   """
-  def get_flag!(id), do: Repo.get!(Flag, id)
+  def get_flag!(project, id) do
+    Flag
+    |> where([f], f.project_id == ^project.id)
+    |> Repo.get!(id)
+  end
 
   @doc """
   Creates a flag.
