@@ -1,18 +1,14 @@
-<h1>Show Flag</h1>
+<section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8">
+          <h1 class="title is-size-1"><%= @flag.name %></h1>
+        </div>
+        <div class="column is-4">
+          <%= link "Edit", to: Routes.dashboard_organization_project_flag_path(@conn, :edit, @organization, @project, @flag), class: "button is-dark" %>
+        </div>
+      </div>
+      <h1 class="is-size-3">Is on: <%= @flag.is_on %></h1>
+    </div>
+  </section>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @flag.name %>
-  </li>
-
-  <li>
-    <strong>Is on:</strong>
-    <%= @flag.is_on %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.dashboard_organization_project_flag_path(@conn, :edit, @organization, @project, @flag) %></span>
-<span><%= link "Back", to: Routes.dashboard_organization_project_flag_path(@conn, :index, @organization, @project) %></span>

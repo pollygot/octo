@@ -6,11 +6,8 @@ defmodule Octo.Products do
   import Ecto.Query, warn: false
   alias Octo.Repo
   alias Octo.Products.Project
+  alias Octo.Products.Flag
   alias Octo.Accounts.Organization
-
-  def list_only_organization_projects(list_of_projects) do
-    Enum.map(list_of_projects, fn (x) -> x.name end)
-  end
 
   def list_organization_projects(%Organization{} = organization) do
     Project
@@ -29,6 +26,22 @@ defmodule Octo.Products do
     from(p in query, where: p.organization_id == ^organization_id)
   end
 
+  def list_project_flags(%Project{} = project) do
+    Flag
+    |> project_flags_query(project)
+    |> Repo.all()
+    |> Repo.preload(:project)
+  end
+
+  def get_project_flag!(%Project{} = project, id) do
+    from(f in Flag, where: f.id == ^id)
+    |> project_flags_query(project)
+    |> Repo.one!()
+  end
+
+  defp project_flags_query(query, %Project{id: project_id}) do
+    from(f in query, where: f.project_id == ^project_id)
+  end
 
   def list_projects(organization) do
     Project
@@ -164,4 +177,11 @@ defmodule Octo.Products do
   def change_flag(%Flag{} = flag) do
     Flag.changeset(flag, %{})
   end
+
+  # old functions
+
+  # def list_only_organization_projects(list_of_projects) do
+  #   Enum.map(list_of_projects, fn (x) -> x.name end)
+  # end
+
 end
