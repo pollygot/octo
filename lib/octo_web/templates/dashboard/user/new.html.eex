@@ -1,5 +1,10 @@
-<h1>New User</h1>
-
-<%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_project_user_path(@conn, :create, @organization, @project)) %>
-
-<span><%= link "Back", to: Routes.dashboard_organization_project_user_path(@conn, :index, @organization, @project) %></span>
+<section class="section">
+  <div class="container">
+    <h1 class="title is-1 has-text-dark">New User</h1>
+    <div class="columns">
+		  <div class="column is-4">
+            <%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_project_user_path(@conn, :create, @organization, @project)) %>
+		  </div>
+		</div>
+  </div>
+</section>

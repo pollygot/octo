@@ -1,24 +1,27 @@
-<h1>Listing Users</h1>
-
-<table>
-  <thead>
-    <tr>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for user <- @users do %>
-    <tr>
-
-      <td>
-        <%= link "Show", to: Routes.dashboard_organization_project_user_path(@conn, :show, @organization, @project, user) %>
-        <%= link "Edit", to: Routes.user_pdashboard_organization_project_user_pathath(@conn, :edit, @organization, @project, user) %>
-        <%= link "Delete", to: Routes.dashboard_organization_project_user_path(@conn, :delete, @organization, @project, user), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New User", to: Routes.dashboard_organization_project_user_path(@conn, :new, @organization, @project) %></span>
+<section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8">
+          <h1 class="title is-size-1"><%= @project.name %> - Users</h1>
+        </div>
+        <div class="column is-4">
+          <%= link "New User", to: Routes.dashboard_organization_project_user_path(@conn, :new, @organization, @project), class: "button is-dark" %>
+        </div>
+      </div>
+      <div class="dashboard_organization">
+        <h1 class="is-size-2 has-text-dark">User List</h1>
+        <div class="dashboard_projects">
+          <%= for user <- @users do %>
+            <div class="columns">
+              <div class="column is-4">
+                <%= link user.identifier, to: Routes.dashboard_organization_project_user_path(@conn, :show, @organization, @project, user), class: "is-size-3 has-text-dark" %>
+              </div>
+              <div class="column is-3">
+                <%= link "Delete", to: Routes.dashboard_organization_project_user_path(@conn, :delete, @organization, @project, user), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>

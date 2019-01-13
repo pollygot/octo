@@ -29,7 +29,7 @@ defmodule OctoWeb.Dashboard.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: Routes.dashboard_organization_project_user_path(conn, :show, organization, project, user))
+        |> redirect(to: Routes.dashboard_organization_project_user_path(conn, :index, organization, project))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, project: project, organization: organization)
@@ -54,7 +54,7 @@ defmodule OctoWeb.Dashboard.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User updated successfully.")
-        |> redirect(to: Routes.dashboard_organization_project_user_path(conn, :show, organization, project, user))
+        |> redirect(to: Routes.dashboard_organization_project_user_path(conn, :index, organization, project))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset, project: project, organization: organization)

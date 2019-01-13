@@ -1,8 +1,17 @@
-<h1>Show User</h1>
+<section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8">
+          <h1 class="title is-size-1"><%= @user.identifier %></h1>
+        </div>
+        <div class="column is-4">
+            <%= link "New User", to: Routes.dashboard_organization_project_user_path(@conn, :new, @organization, @project) %>
+        </div>
+      </div>
+      <div class="dashboard_projects">
+        <%= link "Edit", to: Routes.dashboard_organization_project_user_path(@conn, :edit, @organization, @project, @user) %>
+        <br>
+      </div>      
+    </div>
+  </section>
 
-<ul>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.dashboard_organization_project_user_path(@conn, :edit, @organization, @project, @user) %></span>
-<span><%= link "Back", to: Routes.dashboard_organization_project_user_path(@conn, :index, @organization, @project) %></span>

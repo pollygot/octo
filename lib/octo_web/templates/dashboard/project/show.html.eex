@@ -11,7 +11,7 @@
       <div class="dashboard_projects">
         <%= link "Feature Flags (#{count_projects(@project_flags)})", to: Routes.dashboard_organization_project_flag_path(@conn, :index, @organization, @project), class: "is-size-2 has-text-dark" %>
         <br>
-        <%= link "Users (#{count_projects(@project_flags)})", to: Routes.dashboard_organization_project_flag_path(@conn, :index, @organization, @project), class: "is-size-2 has-text-dark" %>
+        <%= link "Users (#{count_projects(@project_flags)})", to: Routes.dashboard_organization_project_user_path(@conn, :index, @organization, @project), class: "is-size-2 has-text-dark" %>
       </div>      
     </div>
   </section>
