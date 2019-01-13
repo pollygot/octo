@@ -11,7 +11,7 @@
 
       <%= for organization_project <- @organization_projects do %>
         <div class="dashboard_projects">
-          <%= link organization_project.name, to: Routes.dashboard_organization_project_path(@conn, :show, @organization, organization_project.id), class: "is-size-3 has-text-dark" %>
+          <%= link organization_project.name, to: Routes.dashboard_organization_project_path(@conn, :show, @organization, organization_project.id), class: "is-size-2 has-text-dark" %>
         </div>
       <% end %> 
 

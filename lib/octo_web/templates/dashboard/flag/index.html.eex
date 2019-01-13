@@ -1,28 +1,30 @@
-<h1>Listing Flags</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Is on</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for flag <- @flags do %>
-    <tr>
-      <td><%= flag.name %></td>
-      <td><%= flag.is_on %></td>
-
-      <td>
-        <%= link "Show", to: Routes.dashboard_organization_project_flag_path(@conn, :show, @organization, @project, flag) %>
-        <%= link "Edit", to: Routes.dashboard_organization_project_flag_path(@conn, :edit, @organization, @project, flag) %>
-        <%= link "Delete", to: Routes.dashboard_organization_project_flag_path(@conn, :delete, @organization, @project, flag), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Flag", to: Routes.dashboard_organization_project_flag_path(@conn, :new, @organization, @project ) %></span>
+<section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8">
+          <h1 class="title is-size-1"><%= @project.name %> - Flags</h1>
+        </div>
+        <div class="column is-4">
+          <%= link "New Flag", to: Routes.dashboard_organization_project_flag_path(@conn, :new, @organization, @project), class: "button is-dark" %>
+        </div>
+      </div>
+      <div class="dashboard_projects">
+        <h1 class="is-size-2 has-text-dark">Flag List</h1>
+        <div class="dashboard_projects">
+          <%= for flag <- @flags do %>
+            <div class="columns">
+              <div class="column is-4">
+                <%= link flag.name, to: Routes.dashboard_organization_project_flag_path(@conn, :show, @organization, @project, flag), class: "is-size-3 has-text-dark" %>
+              </div>
+              <div class="column is-3">
+                <%= link flag.is_on, to: Routes.dashboard_organization_project_flag_path(@conn, :show, @organization, @project, flag), class: "is-size-3 has-text-dark" %>
+              </div>
+              <div class="column is-3">
+                <%= link "Delete", to: Routes.dashboard_organization_project_flag_path(@conn, :delete, @organization, @project, flag), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
+              </div>
+            </div>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
