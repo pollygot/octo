@@ -8,7 +8,7 @@
           <%= link "New Flag", to: Routes.dashboard_organization_project_flag_path(@conn, :new, @organization, @project), class: "button is-dark" %>
         </div>
       </div>
-      <div class="dashboard_projects">
+      <div class="dashboard_organization">
         <h1 class="is-size-2 has-text-dark">Flag List</h1>
         <div class="dashboard_projects">
           <%= for flag <- @flags do %>
@@ -23,7 +23,7 @@
                 <%= link "Delete", to: Routes.dashboard_organization_project_flag_path(@conn, :delete, @organization, @project, flag), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
               </div>
             </div>
-            <% end %>
+          <% end %>
         </div>
       </div>
     </div>

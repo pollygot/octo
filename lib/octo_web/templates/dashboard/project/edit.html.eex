@@ -1,5 +1,10 @@
-<h1>Edit Project</h1>
-
-<%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_project_path(@conn, :update, @organization, @project)) %>
-
-<span><%= link "Back", to: Routes.dashboard_organization_project_path(@conn, :index, @organization) %></span>
+<section class="section">
+  <div class="container">
+    <h1 class="title is-size-1">Edit Project</h1>
+    <div class="columns">
+      <div class="column is-4">
+        <%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_project_path(@conn, :update, @organization, @project)) %>
+      </div>
+    </div>
+  </div>
+</section>

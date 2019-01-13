@@ -1,7 +1,10 @@
-<h1>Edit Organization</h1>
-
-<%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_path(@conn, :update, @organization)) %>
-
-<span><%= link "Back", to: Routes.dashboard_organization_path(@conn, :index) %></span>
-
-<%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, @organization), method: :delete, data: [confirm: "Are you sure?"] %>
+<section class="section">
+  <div class="container">
+    <h1 class="title is-size-1">Edit Organization</h1>
+    <div class="columns">
+    <div class="column is-4">
+        <%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_path(@conn, :update, @organization)) %>
+    </div>
+    </div>
+  </div>
+</section>

@@ -2,20 +2,29 @@
   <div class="container">
     <div class="columns">
       <div class="column is-8">
-        <h1 class="title is-1 has-text-dark">Listing Organization</h1>
+        <h1 class="title is-1 has-text-dark">Organization List</h1>
       </div>
       <div class="column is-4">
         <%= link "New Organization", to: Routes.dashboard_organization_path(@conn, :new), class: "button is-dark" %>
       </div>
     </div>
-      <%= for organization <- @organizations do %>
-        <br>
-        <h1 class="is-size-4"><%= organization.name %></h1>
-        <%= link "Join", to: Routes.dashboard_organization_path(@conn, :add_customer_organization, organization), class: "button is-dark" %>
-        <%= link "Edit", to: Routes.dashboard_organization_path(@conn, :edit, organization), class: "button is-dark" %>
-        <%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, organization), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
-        <br>
-      <% end %>
+      <div class="dashboard_organization">
+           <%= for organization <- @organizations do %>
+            <div class="columns">
+              <div class="column is-3">
+                <%= link organization.name, to: Routes.dashboard_organization_path(@conn, :show, organization), class: "is-size-2 has-text-dark" %>
+              </div>
+              <div class="column">
+                <%= link "Join", to: Routes.dashboard_organization_path(@conn, :add_customer_organization, organization), class: "button is-dark" %>
+                <%= link "Edit", to: Routes.dashboard_organization_path(@conn, :edit, organization), class: "button is-dark" %>
+                <%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, organization), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
+              </div>
+            </div>
+            <% end %>
+        </div>
+      </div>
 		</div>
   </div>
 </section>
+
+
