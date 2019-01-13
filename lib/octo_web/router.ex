@@ -31,6 +31,7 @@ defmodule OctoWeb.Router do
     resources "/organizations", OrganizationController do
       resources "/projects", ProjectController do
         resources "/flags", FlagController
+        resources "/users", UserController
       end
     end
 

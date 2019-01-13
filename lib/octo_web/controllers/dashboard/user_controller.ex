@@ -1,8 +1,9 @@
-defmodule OctoWeb.UserController do
+defmodule OctoWeb.Dashboard.UserController do
   use OctoWeb, :controller
 
   alias Octo.Products
   alias Octo.Products.User
+  alias Octo.Accounts
 
   def index(conn, _params) do
     users = Products.list_users()
