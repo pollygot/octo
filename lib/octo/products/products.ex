@@ -7,6 +7,7 @@ defmodule Octo.Products do
   alias Octo.Repo
   alias Octo.Products.Project
   alias Octo.Products.Flag
+  alias Octo.Products.User
   alias Octo.Accounts.Organization
 
   def list_organization_projects(%Organization{} = organization) do
@@ -43,6 +44,23 @@ defmodule Octo.Products do
     from(f in query, where: f.project_id == ^project_id)
   end
 
+  def list_project_users(%Project{} = project) do
+    User
+    |> project_users_query(project)
+    |> Repo.all()
+    |> Repo.preload(:project)
+  end
+
+  def get_project_user!(%Project{} = project, id) do
+    from(u in User, where: u.id == ^id)
+    |> project_users_query(project)
+    |> Repo.one!()
+  end
+
+  defp project_users_query(query, %Project{id: project_id}) do
+    from(u in query, where: u.project_id == ^project_id)
+  end
+
   def list_projects(organization) do
     Project
     |> where([p], p.organization_id == ^organization.id)
@@ -70,214 +88,81 @@ defmodule Octo.Products do
   def delete_project(%Project{} = project) do
     Repo.delete(project)
   end
-
   def change_project(%Project{} = project) do
     Project.changeset(project, %{})
   end
 
-
   alias Octo.Products.Flag
 
-  @doc """
-  Returns the list of flags.
-
-  ## Examples
-
-      iex> list_flags()
-      [%Flag{}, ...]
-
-  """
   def list_flags(project) do
     Flag
     |> where([f], f.project_id == ^project.id)
     |> Repo.all()
   end
 
-  @doc """
-  Gets a single flag.
-
-  Raises `Ecto.NoResultsError` if the Flag does not exist.
-
-  ## Examples
-
-      iex> get_flag!(123)
-      %Flag{}
-
-      iex> get_flag!(456)
-      ** (Ecto.NoResultsError)
-
-  """
   def get_flag!(project, id) do
     Flag
     |> where([f], f.project_id == ^project.id)
     |> Repo.get!(id)
   end
 
-  @doc """
-  Creates a flag.
-
-  ## Examples
-
-      iex> create_flag(%{field: value})
-      {:ok, %Flag{}}
-
-      iex> create_flag(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def create_flag(attrs \\ %{}) do
     %Flag{}
     |> Flag.changeset(attrs)
     |> Repo.insert()
   end
 
-  @doc """
-  Updates a flag.
-
-  ## Examples
-
-      iex> update_flag(flag, %{field: new_value})
-      {:ok, %Flag{}}
-
-      iex> update_flag(flag, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def update_flag(%Flag{} = flag, attrs) do
     flag
     |> Flag.changeset(attrs)
     |> Repo.update()
   end
 
-  @doc """
-  Deletes a Flag.
-
-  ## Examples
-
-      iex> delete_flag(flag)
-      {:ok, %Flag{}}
-
-      iex> delete_flag(flag)
-      {:error, %Ecto.Changeset{}}
-
-  """
   def delete_flag(%Flag{} = flag) do
     Repo.delete(flag)
   end
 
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking flag changes.
-
-  ## Examples
-
-      iex> change_flag(flag)
-      %Ecto.Changeset{source: %Flag{}}
-
-  """
   def change_flag(%Flag{} = flag) do
     Flag.changeset(flag, %{})
   end
 
-  # old functions
-
-  # def list_only_organization_projects(list_of_projects) do
-  #   Enum.map(list_of_projects, fn (x) -> x.name end)
-  # end
-
-
   alias Octo.Products.User
 
-  @doc """
-  Returns the list of users.
-
-  ## Examples
-
-      iex> list_users()
-      [%User{}, ...]
-
-  """
-  def list_users do
-    Repo.all(User)
+  def list_users(project) do
+    User
+    |> where([u], u.project_id == ^project.id)
+    |> Repo.all()
   end
 
-  @doc """
-  Gets a single user.
+  def get_user!(project, id) do
+    User
+    |> where([u], u.project_id == ^project.id)
+    |> Repo.get!(id)
+  end
 
-  Raises `Ecto.NoResultsError` if the User does not exist.
-
-  ## Examples
-
-      iex> get_user!(123)
-      %User{}
-
-      iex> get_user!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_user!(id), do: Repo.get!(User, id)
-
-  @doc """
-  Creates a user.
-
-  ## Examples
-
-      iex> create_user(%{field: value})
-      {:ok, %User{}}
-
-      iex> create_user(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
   end
 
-  @doc """
-  Updates a user.
-
-  ## Examples
-
-      iex> update_user(user, %{field: new_value})
-      {:ok, %User{}}
-
-      iex> update_user(user, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def update_user(%User{} = user, attrs) do
     user
     |> User.changeset(attrs)
     |> Repo.update()
   end
 
-  @doc """
-  Deletes a User.
-
-  ## Examples
-
-      iex> delete_user(user)
-      {:ok, %User{}}
-
-      iex> delete_user(user)
-      {:error, %Ecto.Changeset{}}
-
-  """
   def delete_user(%User{} = user) do
     Repo.delete(user)
   end
 
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking user changes.
-
-  ## Examples
-
-      iex> change_user(user)
-      %Ecto.Changeset{source: %User{}}
-
-  """
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
 end
+
+ # old functions
+
+  # def list_only_organization_projects(list_of_projects) do
+  #   Enum.map(list_of_projects, fn (x) -> x.name end)
+  # end

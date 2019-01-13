@@ -32,7 +32,7 @@ defmodule OctoWeb.Dashboard.FlagController do
         |> redirect(to: Routes.dashboard_organization_project_flag_path(conn, :show, organization, project, flag))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset, project: project)
+        render(conn, "new.html", changeset: changeset, project: project, organization: organization)
     end
   end
 
@@ -57,7 +57,7 @@ defmodule OctoWeb.Dashboard.FlagController do
         |> redirect(to: Routes.dashboard_organization_project_flag_path(conn, :show, organization, project, flag))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", flag: flag, changeset: changeset, project: project)
+        render(conn, "edit.html", flag: flag, changeset: changeset, project: project, organization: organization)
     end
   end
 

@@ -4,5 +4,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.dashboard_organization_project_user_path(@conn, :edit, @user) %></span>
-<span><%= link "Back", to: Routes.dashboard_organization_project_user_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.dashboard_organization_project_user_path(@conn, :edit, @organization, @project, @user) %></span>
+<span><%= link "Back", to: Routes.dashboard_organization_project_user_path(@conn, :index, @organization, @project) %></span>
