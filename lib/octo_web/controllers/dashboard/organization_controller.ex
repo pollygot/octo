@@ -4,6 +4,7 @@ defmodule OctoWeb.Dashboard.OrganizationController do
   alias Octo.Accounts
   alias Octo.Accounts.Organization
   alias Octo.Products
+  import Logger, warn: false
 
   def add_customer_organization(conn, %{"id" => id}) do
     organization = Accounts.get_organization!(id)
@@ -32,6 +33,7 @@ defmodule OctoWeb.Dashboard.OrganizationController do
   end
 
   def create(conn, %{"organization" => organization_params}) do
+    Logger.info'organization_params #{inspect(organization_params)}'
     case Accounts.create_organization(conn.assigns.current_customer, organization_params) do
       {:ok, _organization} ->
         conn

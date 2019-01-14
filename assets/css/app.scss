@@ -1,15 +1,15 @@
 /* This file is for your main application css. */
-@import 'bulma';
 @charset "utf-8";
+@import 'bulma';
 
 // Import fonts
-@import url('https://fonts.googleapis.com/css?family=Baumans:300,400,500,600,700');
+// @import url('https://fonts.googleapis.com/css?family=Baumans:300,400,500,600,700');
 
 // override bulma
-$header-family:Baumans;
+// $header-family:Baumans;
 
 .navbar-item, .navbar-link, {
-  font-family: $header-family;
+  // font-family: $header-family;
   font-weight: 700;
 }
 

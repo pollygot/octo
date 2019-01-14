@@ -12,7 +12,7 @@
       </div>
       <%= for organization <- @organizations do %>
       <div class="dashboard_organization">
-        <%= link organization.name, to: Routes.dashboard_organization_path(@conn, :show, organization), class: "is-size-2 has-text-dark" %>
+        <%= link organization.name, to: Routes.dashboard_organization_path(@conn, :show, organization), class: "box is-size-2 has-text-dark" %>
 
         <%= for organization_project <- @organization_projects do %>
 

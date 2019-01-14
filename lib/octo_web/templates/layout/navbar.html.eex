@@ -46,6 +46,10 @@
     <div class="navbar-end">
       <%= if @current_customer do %>
         <div class="navbar-item">
+          <%= link "Orgs", to: "/dashboard/organizations/", class: "has-text-dark" %>
+        </div>
+
+        <div class="navbar-item">
           <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_customer), method: "delete", class: "has-text-dark" %>
         </div>
       <% else %>

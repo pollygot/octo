@@ -2,7 +2,7 @@ defmodule Octo.Repo.Migrations.CreateCustomersOrganizations do
   use Ecto.Migration
 
   def change do
-    create table(:customers_organizations, primary_key: false) do
+    create table(:customers_organizations) do
       add :customer_id, references(:customers, on_delete: :delete_all)
       add :organization_id, references(:organizations, on_delete: :delete_all)
 
