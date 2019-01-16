@@ -12,7 +12,27 @@
         <%= link "Feature Flags (#{count_projects(@project_flags)})", to: Routes.dashboard_organization_project_flag_path(@conn, :index, @organization, @project), class: "is-size-2 has-text-dark" %>
         <br>
         <%= link "Users (#{count_projects(@project_flags)})", to: Routes.dashboard_organization_project_user_path(@conn, :index, @organization, @project), class: "is-size-2 has-text-dark" %>
-      </div>      
+      </div>  
     </div>
   </section>
 
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-2">
+        <div class="field">
+          <p class="control">
+            <input class="input" type="text" id="project_id" placeholder="Project ID">
+          </p>
+        </div>
+      </div>
+      <div class="column is-2">
+        <div class="field">
+          <p class="control">
+            <input class="input" type="text" id="user_id" placeholder="User ID">
+          </p>
+        </div>
+      </div>
+    </div>    
+  </div>
+</section>
