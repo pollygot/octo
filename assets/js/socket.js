@@ -57,17 +57,19 @@ socket.connect()
 let channelProjectId = window.channelProjectId
 
 if (channelProjectId) {
-  // Now that you are connected, you can join channels with a topic:
+// channel.join triggers the join function with the project_id as the topic
   let channel = socket.channel(`project:${channelProjectId}`, {})
   channel.join()
     .receive("ok", resp => { console.log("Joined successfully", resp) })
     .receive("error", resp => { console.log("Unable to join", resp) })
 
+// This is the Broadcast function in the Handle In 
   channel.on(`project:${channelProjectId}:new_message`, (message) => {
     console.log("message", message)
     renderMessage(message)
   });
 
+// This triggers the Handle In function (Channel push part)
   document.querySelector("#new-message").addEventListener('submit', (e) => {
     e.preventDefault()
     let messageInput = e.target.querySelector('#message-content')

@@ -67,6 +67,11 @@ defmodule Octo.Products do
     |> Repo.all()
   end
 
+  def get_project_from_id(id) do
+    Project
+    |> Repo.get!(id)
+  end
+
   def get_project!(organization, id) do
     Project
     |> where([p], p.organization_id == ^organization.id)
