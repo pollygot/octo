@@ -16,3 +16,20 @@
     </div>
   </section>
 
+
+<script>window.channelProjectId = "<%= @project.id %>"</script>
+
+<section class="section">
+  <div class="container">
+
+    <ul class="list-group mt-5" id="messages"></ul>
+
+    <form class="input-group mt-3" id="new-message">
+      <input type="text" class="form-control" placeholder="Message #<%= @project.name  %>" id="message-content" />
+      <div class="input-group-append">
+        <button class="btn btn-outline-success" type="submit">Send</button>
+      </div>
+    </div>
+
+  </div>
+</section>
