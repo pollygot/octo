@@ -14,9 +14,11 @@ defmodule OctoWeb.Dashboard.UserController do
 
   def index(conn, _params, organization, project) do
     users = Products.list_users(project)
-    render(conn, "index.html", users: users, project: project, organization: organization)
+    flags = Products.list_project_flags(project)
+    render(conn, "index.html", users: users, flags: flags, project: project, organization: organization)
   end
 
+  @spec new(Plug.Conn.t(), any(), any(), atom() | %{id: any()}) :: Plug.Conn.t()
   def new(conn, _params, organization, project) do
     changeset = Products.change_user(%User{project_id: project.id})
     render(conn, "new.html", changeset: changeset, project: project, organization: organization)

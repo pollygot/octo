@@ -5,11 +5,13 @@
           <h1 class="title is-size-1"><%= @user.identifier %></h1>
         </div>
         <div class="column is-4">
-            <%= link "New User", to: Routes.dashboard_organization_project_user_path(@conn, :new, @organization, @project) %>
+            <%= link "New User", to: Routes.dashboard_organization_project_user_path(@conn, :new, @organization, @project), class: "button is-dark" %>
         </div>
       </div>
       <div class="dashboard_projects">
-        <%= link "Edit", to: Routes.dashboard_organization_project_user_path(@conn, :edit, @organization, @project, @user) %>
+        <%= link "Edit", to: Routes.dashboard_organization_project_user_path(@conn, :edit, @organization, @project, @user), class: "button is-dark" %>
+        <%= link "Delete", to: Routes.dashboard_organization_project_user_path(@conn, :delete, @organization, @project, @user), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
+
         <br>
       </div>      
     </div>
