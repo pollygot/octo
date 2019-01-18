@@ -2,7 +2,7 @@ defmodule OctoWeb.Dashboard.FlagController do
   use OctoWeb, :controller
 
   alias Octo.Products
-  alias Octo.Products.Flag
+  alias Octo.Products.{Flag, UserFlag}
   alias Octo.Accounts
 
   def action(conn, _) do
@@ -10,6 +10,17 @@ defmodule OctoWeb.Dashboard.FlagController do
     project = Products.get_project!(organization, conn.params["project_id"])
     args = [conn, conn.params, organization, project]
     apply(__MODULE__, action_name(conn), args)
+  end
+
+  def check_user_flag(conn, user, organization, project) do
+    user = Products.get_user!(project, conn.params["user_id"])
+    flag = Products.get_flag!(project, conn.params["flag_id"])
+
+    Products.update_or_insert_userflag(user, flag)
+
+    conn
+    |> put_flash(:info, "Flag overriden!")
+    |> redirect(to: Routes.dashboard_organization_project_user_path(conn, :index, organization, project))
   end
 
   def index(conn, _params, organization, project) do
@@ -29,7 +40,7 @@ defmodule OctoWeb.Dashboard.FlagController do
       {:ok, flag} ->
         conn
         |> put_flash(:info, "Flag created successfully.")
-        |> redirect(to: Routes.dashboard_organization_project_flag_path(conn, :show, organization, project, flag))
+        |> redirect(to: Routes.dashboard_organization_project_flag_path(conn, :index, organization, project))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, project: project, organization: organization)

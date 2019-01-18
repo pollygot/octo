@@ -14,7 +14,7 @@ defmodule Octo.Products.UserFlag do
   @doc false
   def changeset(user_flag, attrs) do
     user_flag
-    |> cast(attrs, [:is_on])
-    |> validate_required([:is_on, :user_id, :flag_id])
+    |> cast(attrs, [:is_on, :user_id, :flag_id])
+    |> validate_required([])
   end
 end

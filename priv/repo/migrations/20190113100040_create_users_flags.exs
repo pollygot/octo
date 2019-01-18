@@ -2,7 +2,7 @@ defmodule Octo.Repo.Migrations.CreateUsersFlags do
   use Ecto.Migration
 
   def change do
-    create table(:users_flags, primary_key: false) do
+    create table(:users_flags) do
       add :is_on, :boolean, default: false, null: false
       add :user_id, references(:users, on_delete: :delete_all)
       add :flag_id, references(:flags, on_delete: :delete_all)

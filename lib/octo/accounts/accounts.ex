@@ -17,6 +17,7 @@ defmodule Octo.Accounts do
     |> Repo.update
   end
 
+
   def list_customer_organizations(%Customer{organizations: org}), do: org
 
   def create_organization(%Customer{} = customer, attrs \\ %{}) do

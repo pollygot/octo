@@ -5,10 +5,13 @@ defmodule Octo.Products do
 
   import Ecto.Query, warn: false
   alias Octo.Repo
-  alias Octo.Products.Project
-  alias Octo.Products.Flag
-  alias Octo.Products.User
   alias Octo.Accounts.Organization
+  alias Octo.Products.{Flag, User, UserFlag, Project}
+
+  def update_or_insert_userflag(user, flag) do
+    Repo.insert!(%UserFlag{user_id: user.id, flag_id: flag.id, is_on: false},
+                on_conflict: [set: [is_on: !flag.is_on]], conflict_target: [:user_id, :flag_id])
+  end
 
   def list_organization_projects(%Organization{} = organization) do
     Project
@@ -165,9 +168,3 @@ defmodule Octo.Products do
     User.changeset(user, %{})
   end
 end
-
- # old functions
-
-  # def list_only_organization_projects(list_of_projects) do
-  #   Enum.map(list_of_projects, fn (x) -> x.name end)
-  # end

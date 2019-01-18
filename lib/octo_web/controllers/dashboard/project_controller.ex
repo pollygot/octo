@@ -38,7 +38,8 @@ defmodule OctoWeb.Dashboard.ProjectController do
   def show(conn, %{"id" => id}, organization) do
     project = Products.get_project!(organization, id)
     project_flags = Products.list_project_flags(project)
-    render(conn, "show.html", project_flags: project_flags, project: project, organization: organization)
+    project_users = Products.list_project_users(project)
+    render(conn, "show.html", project_flags: project_flags, project_users: project_users, project: project, organization: organization)
   end
 
   def edit(conn, %{"id" => id}, organization) do

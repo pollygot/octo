@@ -183,3 +183,96 @@ Questions
     2. SOLUTION for my problem - Webpack may not have put the file in priv/static, so its not being sent to the browser. This is why the browser is only rendering HTML and no front end stuff. There are some settings that Distillery uses that may have affected the Webpack build. Look in Paul’s eDeliver config for “pre erlang clean and compile” and add that into my eDeliver config. I’ll also have to make some changes to that because its using brunch, so wherever i see brunch that will fail. (see if i can find a web pack version of this?) 
 5. If i want to have 2 sites, do i need 2 deploy users
     1. If i have 2 files that have the same version ? It only deploys on the server. You can only have one port listening to each port. one of my ports is on 4000 and the other is on 4001. It will detect the domain on the outside, based on this domain, which sends the request traffic through 4001 to the place where the production files sit.
+
+
+# case Products.get_or_insert_userflag(user, flag) do
+    #   {:ok, _userflag} ->
+    #     conn
+    #     |> put_flash(:info, "Flag overriden!")
+    #     |> redirect(to: Routes.dashboard_organization_project_user_path(conn, :index, organization, project))
+
+    #   {:error, %Ecto.Changeset{}} ->
+    #     conn
+    #     |> put_flash(:info, "Hmm...something went wrong!")
+    #     |> redirect(to: Routes.dashboard_page_path(conn, :index))
+    # end
+
+
+
+
+
+	# def add_user_flag(conn, flag, user, organization, project) do
+
+  #   case Products.link_user_and_flag(user, flag) do
+  #     {:ok, _flag} ->
+  #       conn
+  #       |> put_flash(:info, "Flag overriden!")
+  #       |> redirect(to: Routes.dashboard_organization_project_user_path(conn, :index, organization, project))
+
+
+  #     {:error, %Ecto.Changeset{}} ->
+  #       conn
+  #       |> put_flash(:info, "Hmm...something went wrong!")
+  #       |> redirect(to: Routes.dashboard_page_path(conn, :index))
+  #   end
+  # end
+
+
+
+  # def check_user_flag(conn, flag, user, organization, project) do
+
+  #   case Products.get_user_flag!(user, flag) do
+  #     %UserFlag{} ->
+  #       Products.flip_flag_boolean()
+
+  #       conn
+  #       |> put_flash(:info, "Flag overriden!")
+  #       |> redirect(to: Routes.dashboard_organization_project_user_path(conn, :index, organization, project))
+
+  #     _ ->
+  #       #create record
+  #       Products.add_user_flag(user, flag)
+  #       conn
+  #       |> put_flash(:info, "Hmm...something went wrong!")
+  #       |> redirect(to: Routes.dashboard_page_path(conn, :index))
+  #   end
+  # end
+
+
+
+
+
+
+  # def link_user_and_flag(%User{} = user, %Flag{} = flag) do
+  #   flag = Repo.preload(flag, :users)
+  #   users = flag.users ++ [user]
+  #               |> Enum.map(&Ecto.Changeset.change/1)
+
+  #   flag
+  #   |> Ecto.Changeset.change
+  #   |> Ecto.Changeset.put_assoc(:users, users)
+  #   |> Repo.update
+  # end
+
+  # def flip_flag_boolean(%UserFlag{} = userflag) do
+  #   bool = userflag.is_on
+  #   flipped = bool |> Kernel.!
+
+  #   userflag
+  #   |> Ecto.Changeset.change
+  #   |> Ecto.Changeset.put_assoc(:is_on, flipped)
+  #   |> Repo.update
+  # end
+
+  # def get_user_flag!(user, flag) do
+  #   UserFlag
+  #   |> where([u], u.user_id == ^user.id)
+  #   |> where([u], u.flag_id == ^flag.id)
+  #   |> Repo.one!()
+  # end
+
+  # def add_user_flag(user, flag) do
+  #   %UserFlag{}
+  #   |> UserFlag.changeset(%{user_id: user.id, flag_id: flag.id, is_on: false})
+  #   |> Repo.insert()
+  # end

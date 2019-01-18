@@ -31,11 +31,13 @@ defmodule OctoWeb.Router do
     resources "/organizations", OrganizationController do
       resources "/projects", ProjectController do
         resources "/flags", FlagController
-        resources "/users", UserController
+        resources "/users", UserController do
+          get("check_user_flag/:user_id/:flag_id", FlagController, :check_user_flag)
+        end
       end
     end
-
     get("add_customer_organization/:id", OrganizationController, :add_customer_organization)
+
   end
 
 # I gotta put all the customers edit/update/delete somewhere

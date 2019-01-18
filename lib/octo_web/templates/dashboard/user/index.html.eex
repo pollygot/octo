@@ -24,6 +24,7 @@
                   <h1 class="is-size-3"><%= flag.is_on %></h1>
                 </div>
                 <div class="column is-4">
+                  <%= link "Override", to: Routes.dashboard_organization_project_user_flag_path(@conn, :check_user_flag, @organization, @project, user, flag), class: "button is-dark" %>
                   <%= link "Delete", to: Routes.dashboard_organization_project_flag_path(@conn, :delete, @organization, @project, flag), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
                 </div>
               </div>
