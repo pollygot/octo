@@ -13,24 +13,38 @@
         <div class="dashboard_projects">
           <%= for user <- @users do %>
             <%= link user.identifier, to: Routes.dashboard_organization_project_user_path(@conn, :show, @organization, @project, user), class: "is-size-3 has-text-dark" %> 
-            <%= for flag <- @flags do %>
+            <%= for override <- @overrides do %>
               <div class="columns">
                 <div class="column is-4"> 
                   <div class="dashboard_projects">
-                    <%= link flag.name, to: Routes.dashboard_organization_project_flag_path(@conn, :show, @organization, @project, flag), class: "is-size-3 has-text-dark" %>
+                    <%= if override.user_id == user.id do %>
+                      <%= link override.flag.name, to: Routes.dashboard_organization_project_flag_path(@conn, :show, @organization, @project, override), class: "is-size-3 has-text-dark" %>
                   </div>
                 </div>
                 <div class="column is-4">
-                  <h1 class="is-size-3"><%= flag.is_on %></h1>
+                  <h1 class="is-size-3"><%= override.is_on %></h1>
                 </div>
                 <div class="column is-4">
-                  <%= link "Override", to: Routes.dashboard_organization_project_user_flag_path(@conn, :check_user_flag, @organization, @project, user, flag), class: "button is-dark" %>
-                  <%= link "Delete", to: Routes.dashboard_organization_project_flag_path(@conn, :delete, @organization, @project, flag), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
+                  <%= link "Override", to: Routes.dashboard_organization_project_user_flag_path(@conn, :check_user_flag, @organization, @project, user, override), class: "button is-dark" %>
+                  <%= link "Delete", to: Routes.dashboard_organization_project_flag_path(@conn, :delete, @organization, @project, override), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
                 </div>
               </div>
             <% end %>
           <% end %>
+        <% end %> 
         </div>
       </div>
     </div>
   </section>
+
+  <section class="section">
+  <br>
+  <%= inspect @overrides %>
+  <br>
+  <br>
+   <%= inspect @remaining_flags %>
+   <%# <%= for flag <- @remaining_flags do %> %>
+    <%# <%= flag.name %> %>
+    <%# <% end %> %>
+
+   </section>

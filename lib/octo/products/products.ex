@@ -8,6 +8,12 @@ defmodule Octo.Products do
   alias Octo.Accounts.Organization
   alias Octo.Products.{Flag, User, UserFlag, Project}
 
+
+  def left_flags(overrides, project_flags) do
+    override_id = Enum.map(overrides, fn x -> x.flag_id end)
+    Enum.filter(project_flags, fn x -> !Enum.member?(override_id, x.id) end)
+  end
+
   def update_or_insert_userflag(user, flag) do
     Repo.insert!(%UserFlag{user_id: user.id, flag_id: flag.id, is_on: false},
                 on_conflict: [set: [is_on: !flag.is_on]], conflict_target: [:user_id, :flag_id])
@@ -62,6 +68,13 @@ defmodule Octo.Products do
 
   defp project_users_query(query, %Project{id: project_id}) do
     from(u in query, where: u.project_id == ^project_id)
+  end
+
+  def list_user_flags(user) do
+    UserFlag
+    |> where([u], u.user_id == ^user.id)
+    |> Repo.all()
+    |> Repo.preload(:flag)
   end
 
   def list_projects(organization) do

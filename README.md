@@ -276,3 +276,12 @@ Questions
   #   |> UserFlag.changeset(%{user_id: user.id, flag_id: flag.id, is_on: false})
   #   |> Repo.insert()
   # end
+
+
+  def compare_flag_id(project_flags, override_flag_id) do
+    Map.new(project_flags, fn x -> if x.id != override_flag_id do x end end)
+  end
+
+  def remaining_flags(overrides, project_flags) do
+    Enum.map(overrides, fn x -> compare_flag_id(project_flags, x.flag_id) end)
+  end
