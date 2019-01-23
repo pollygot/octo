@@ -13,14 +13,9 @@ defmodule OctoWeb.Dashboard.UserController do
   end
 
   def index(conn, _params, organization, project) do
-    users = Products.list_users(project)
-    project_flags = Products.list_project_flags(project)
-    override_list = Enum.map(users, fn x -> Products.list_user_flags(x) end)
-    remaining_flags = Enum.map(override_list, fn x -> Products.left_flags(x, project_flags) end)
-    overrides = Enum.concat(override_list)
-    # remaining_flags = Products.left_flags(overrides, project_flags)
-    # remaining_flags = Enum.map(override_list, fn x -> Products.left_flags(x, project_flags) end)
-    render(conn, "index.html", users: users, overrides: overrides, project_flags: project_flags, remaining_flags: remaining_flags, project: project, organization: organization)
+    modified_users = Products.modify_users(project)
+
+    render(conn, "index.html", users: modified_users, project: project, organization: organization)
   end
 
   @spec new(Plug.Conn.t(), any(), any(), atom() | %{id: any()}) :: Plug.Conn.t()

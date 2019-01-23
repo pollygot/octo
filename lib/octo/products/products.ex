@@ -9,9 +9,34 @@ defmodule Octo.Products do
   alias Octo.Products.{Flag, User, UserFlag, Project}
 
 
-  def left_flags(overrides, project_flags) do
-    override_id = Enum.map(overrides, fn x -> x.flag_id end)
-    Enum.filter(project_flags, fn x -> !Enum.member?(override_id, x.id) end)
+  def modify_users(project) do
+    project_flags = list_project_flags(project)
+    users = list_users(project)
+    overrides = list_overrides(users)
+
+    # modified_users = Enum.map(users, fn(u) ->
+    #   Map.put(u, :default_flags, Enum.drop_while(project_flags, fn project_flag ->
+    #     Enum.find(u.flags, fn x -> x.id == project_flag.id end)
+    #   end))
+
+    #
+
+    modified_users = Enum.map(users, fn(u) ->
+      Map.merge(u, %{
+        default_flags: Enum.drop_while(project_flags, fn project_flag ->
+          Enum.find(u.flags, fn override -> override.id == project_flag.id end)
+        end),
+        overrides: Enum.filter(overrides, fn override -> override.user_id == u.id end)
+      })
+    end)
+
+    modified_users
+  end
+
+  def list_overrides(users) do
+    users
+    |> Enum.map(fn x -> list_user_flags(x) end)
+    |> Enum.concat()
   end
 
   def update_or_insert_userflag(user, flag) do
@@ -153,6 +178,7 @@ defmodule Octo.Products do
     User
     |> where([u], u.project_id == ^project.id)
     |> Repo.all()
+    |> Repo.preload(:flags)
   end
 
   def get_user!(project, id) do

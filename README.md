@@ -185,103 +185,25 @@ Questions
     1. If i have 2 files that have the same version ? It only deploys on the server. You can only have one port listening to each port. one of my ports is on 4000 and the other is on 4001. It will detect the domain on the outside, based on this domain, which sends the request traffic through 4001 to the place where the production files sit.
 
 
-# case Products.get_or_insert_userflag(user, flag) do
-    #   {:ok, _userflag} ->
-    #     conn
-    #     |> put_flash(:info, "Flag overriden!")
-    #     |> redirect(to: Routes.dashboard_organization_project_user_path(conn, :index, organization, project))
 
-    #   {:error, %Ecto.Changeset{}} ->
-    #     conn
-    #     |> put_flash(:info, "Hmm...something went wrong!")
-    #     |> redirect(to: Routes.dashboard_page_path(conn, :index))
-    # end
-
-
-
-
-
-	# def add_user_flag(conn, flag, user, organization, project) do
-
-  #   case Products.link_user_and_flag(user, flag) do
-  #     {:ok, _flag} ->
-  #       conn
-  #       |> put_flash(:info, "Flag overriden!")
-  #       |> redirect(to: Routes.dashboard_organization_project_user_path(conn, :index, organization, project))
-
-
-  #     {:error, %Ecto.Changeset{}} ->
-  #       conn
-  #       |> put_flash(:info, "Hmm...something went wrong!")
-  #       |> redirect(to: Routes.dashboard_page_path(conn, :index))
-  #   end
-  # end
-
-
-
-  # def check_user_flag(conn, flag, user, organization, project) do
-
-  #   case Products.get_user_flag!(user, flag) do
-  #     %UserFlag{} ->
-  #       Products.flip_flag_boolean()
-
-  #       conn
-  #       |> put_flash(:info, "Flag overriden!")
-  #       |> redirect(to: Routes.dashboard_organization_project_user_path(conn, :index, organization, project))
-
-  #     _ ->
-  #       #create record
-  #       Products.add_user_flag(user, flag)
-  #       conn
-  #       |> put_flash(:info, "Hmm...something went wrong!")
-  #       |> redirect(to: Routes.dashboard_page_path(conn, :index))
-  #   end
-  # end
-
-
-
-
-
-
-  # def link_user_and_flag(%User{} = user, %Flag{} = flag) do
-  #   flag = Repo.preload(flag, :users)
-  #   users = flag.users ++ [user]
-  #               |> Enum.map(&Ecto.Changeset.change/1)
-
-  #   flag
-  #   |> Ecto.Changeset.change
-  #   |> Ecto.Changeset.put_assoc(:users, users)
-  #   |> Repo.update
-  # end
-
-  # def flip_flag_boolean(%UserFlag{} = userflag) do
-  #   bool = userflag.is_on
-  #   flipped = bool |> Kernel.!
-
-  #   userflag
-  #   |> Ecto.Changeset.change
-  #   |> Ecto.Changeset.put_assoc(:is_on, flipped)
-  #   |> Repo.update
-  # end
-
-  # def get_user_flag!(user, flag) do
-  #   UserFlag
-  #   |> where([u], u.user_id == ^user.id)
-  #   |> where([u], u.flag_id == ^flag.id)
-  #   |> Repo.one!()
-  # end
-
-  # def add_user_flag(user, flag) do
-  #   %UserFlag{}
-  #   |> UserFlag.changeset(%{user_id: user.id, flag_id: flag.id, is_on: false})
-  #   |> Repo.insert()
-  # end
-
-
-  def compare_flag_id(project_flags, override_flag_id) do
-    Map.new(project_flags, fn x -> if x.id != override_flag_id do x end end)
-  end
-
-  def remaining_flags(overrides, project_flags) do
-    Enum.map(overrides, fn x -> compare_flag_id(project_flags, x.flag_id) end)
-  end
+<%= for user <- @users do %>
+            <%= link user.identifier, to: Routes.dashboard_organization_project_user_path(@conn, :show, @organization, @project, user), class: "is-size-3 has-text-dark" %> 
+              <div class="dashboard_projects">
+                <div class="columns">
+                  <div class="column is-4"> 
+                    <%= for override <- @overrides do %>
+                      <%= if override.user_id == user.id do %>
+                        <%= link override.flag.name, to: Routes.dashboard_organization_project_flag_path(@conn, :show, @organization, @project, override), class: "is-size-3 has-text-dark" %>
+                  </div>
+                  <div class="column is-4">
+                    <h1 class="is-size-3"><%= override.flag.is_on %></h1> 
+                  </div>
+                  <div class="column is-4">
+                    <%= link "Override", to: Routes.dashboard_organization_project_user_flag_path(@conn, :check_user_flag, @organization, @project, user, override), class: "button is-dark" %>
+                    <%= link "Delete", to: Routes.dashboard_organization_project_flag_path(@conn, :delete, @organization, @project, override), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end  %>
