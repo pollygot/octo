@@ -184,26 +184,5 @@ Questions
 5. If i want to have 2 sites, do i need 2 deploy users
     1. If i have 2 files that have the same version ? It only deploys on the server. You can only have one port listening to each port. one of my ports is on 4000 and the other is on 4001. It will detect the domain on the outside, based on this domain, which sends the request traffic through 4001 to the place where the production files sit.
 
-
-
-<%= for user <- @users do %>
-            <%= link user.identifier, to: Routes.dashboard_organization_project_user_path(@conn, :show, @organization, @project, user), class: "is-size-3 has-text-dark" %> 
-              <div class="dashboard_projects">
-                <div class="columns">
-                  <div class="column is-4"> 
-                    <%= for override <- @overrides do %>
-                      <%= if override.user_id == user.id do %>
-                        <%= link override.flag.name, to: Routes.dashboard_organization_project_flag_path(@conn, :show, @organization, @project, override), class: "is-size-3 has-text-dark" %>
-                  </div>
-                  <div class="column is-4">
-                    <h1 class="is-size-3"><%= override.flag.is_on %></h1> 
-                  </div>
-                  <div class="column is-4">
-                    <%= link "Override", to: Routes.dashboard_organization_project_user_flag_path(@conn, :check_user_flag, @organization, @project, user, override), class: "button is-dark" %>
-                    <%= link "Delete", to: Routes.dashboard_organization_project_flag_path(@conn, :delete, @organization, @project, override), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        <% end  %>
+ # modified_user = Products.modify_user(content, socket.assigns.project)
+    # user = Products.get_user!(socket.assigns.project, user_id)

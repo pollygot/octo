@@ -40,7 +40,8 @@ defmodule OctoWeb.Dashboard.UserController do
 
   def show(conn, %{"id" => id}, organization, project) do
     user = Products.get_user!(project, id)
-    render(conn, "show.html", user: user, project: project, organization: organization)
+    modified_user = Products.modify_user(id, project)
+    render(conn, "show.html", user: user, modified_user: modified_user, project: project, organization: organization)
   end
 
   def edit(conn, %{"id" => id}, organization, project) do

@@ -10,10 +10,10 @@ defmodule OctoWeb.ProjectChannel do
     {:ok, response, socket}
   end
 
-  def handle_in("message:add", %{"message" => content}, socket) do
-    flags = Products.list_flags(socket.assigns.project)
+  def handle_in("message:add", %{"message" => user_id}, socket) do
+    modified_user = Products.modify_user(user_id, socket.assigns.project)
     project_id = socket.assigns.project.id
-    broadcast!(socket, "project:#{project_id}:new_message", %{content: content <> inspect(flags)})
+    broadcast!(socket, "project:#{project_id}:new_message", %{content: inspect(modified_user.default_flags)})
     {:reply, :ok, socket}
   end
 
