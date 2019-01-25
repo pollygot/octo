@@ -13,12 +13,10 @@
     </p>
   </div>
   
-  <br>
-  
-  <div class="form-group">
+  <div class="field">
     <p class="control">
-      <button class="button is-dark">
-        Boom
+      <button class="button is-primary is-fullwidth">
+        Create
       </button>
     </p>
   </div>

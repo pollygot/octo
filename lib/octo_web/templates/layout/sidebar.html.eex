@@ -1,0 +1,96 @@
+<div class="sidebar">
+
+  <div class="main-header p-md">
+    <div class="dropdown is-hoverable">
+      <div class="dropdown-trigger">
+         <article class="media">
+            <figure class="media-left">
+              <p class="image is-32x32">
+                <img src="https://bulma.io/images/placeholders/128x128.png" class=" has-corners ">
+              </p>
+            </figure>
+            <div class="media-content ">
+              <h3 class="title is-5 has-text-white">Project Name</h3>
+              <p class="has-text-white subtitle is-size-6">Environment</p>
+            </div>
+          </article>
+      </div>
+      <div class="dropdown-menu" id="dropdown-  menu4" role="menu">
+        <div class="dropdown-content">
+          <div class="dropdown-item">
+            <p class="heading">Environments</p>
+          </div>
+          <a href="#" class="dropdown-item">
+            Production
+          </a>
+          <a href="#" class="dropdown-item">
+            Dev
+          </a>
+          <a href="#" class="dropdown-item">
+            Create new
+          </a>
+          <hr class="dropdown-divider">
+          <div class="dropdown-item">
+            <h3 class="title is-5">Org name</h3>
+          </div>
+          <a href="#" class="dropdown-item">
+            Organization settings
+          </a>
+          <a href="/dashboard/organizations" class="dropdown-item">
+            Switch organization
+          </a>
+          <hr class="dropdown-divider">
+          <div class="dropdown-item">
+            <h3 class="title is-5">User</h3>
+          </div>
+          <a href="#" class="dropdown-item">
+            Settings
+          </a>
+          <a href="#" class="dropdown-item">
+            Sign out
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-items">
+    <a class="menu-item">
+      <span class="icon is-medium">
+        <i class="fas fa-th-large fa-lg"></i>
+      </span>
+      <span>Projects</span>
+    </a>
+  </div>
+
+  <div class="menu-items">
+    <a class="menu-item">
+      <span class="icon is-medium">
+        <i class="fas fa-sliders-h fa-lg"></i>
+      </span>
+      <span>Flags</span>
+    </a>
+    <a class="menu-item">
+      <span class="icon is-medium">
+        <i class="fas fa-user fa-lg"></i>
+      </span>
+      <span>Users</span>
+    </a>
+  </div>
+
+  <div class="menu-items">
+    <a class="menu-item">
+      <span class="icon is-medium">
+        <i class="fas fa-key fa-lg"></i>
+      </span>
+      <span>API keys</span>
+    </a>
+    <a class="menu-item">
+      <span class="icon is-medium">
+        <i class="fas fa-cog fa-lg"></i>
+      </span>
+      <span>Settings</span>
+    </a>
+  </div>
+
+</div>

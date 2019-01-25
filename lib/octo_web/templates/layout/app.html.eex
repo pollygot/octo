@@ -9,23 +9,36 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
 
-  <body class="has-bg-primary">
-      <header class="header">
-      <%= render "navbar.html", conn: @conn, current_customer: @current_customer %>
-      </header>
+  <body class="">
 
-      <div id="toast" class="">
-        <%= if get_flash(@conn, :info) do %>
-          <span class="notification is-dark" role="alert"><%= get_flash(@conn, :info) %></span>
-        <% end %>
-        <%= if get_flash(@conn, :error) do %>
-          <span class="notification is-danger" role="alert"><%= get_flash(@conn, :error) %></span>
-        <% end %>
-      </div>
+    <div class="app">
+      
+      <%# <header class="header">
+      <%= render "navbar.html", conn: @conn, current_customer: @current_customer 
+      </header> 
+      %>
+
+      <%= render "sidebar.html", conn: @conn, current_customer: @current_customer %>
+        
+        <div class="main">
+
+          <div id="toast" class="">
+            <%= if get_flash(@conn, :info) do %>
+              <span class="notification is-dark" role="alert"><%= get_flash(@conn, :info) %></span>
+            <% end %>
+            <%= if get_flash(@conn, :error) do %>
+              <span class="notification is-danger" role="alert"><%= get_flash(@conn, :error) %></span>
+            <% end %>
+          </div>
+        
+          <main class="">
+            <%= render @view_module, @view_template, assigns %>
+          </main>
+        </div>
+
+    </div>
+
     
-    <main role="main" class="container">
-      <%= render @view_module, @view_template, assigns %>
-    </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

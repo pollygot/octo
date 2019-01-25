@@ -1,27 +1,22 @@
-<section class="section">
-    <div class="container">
-      <div class="columns">
-        <div class="column is-8">
-          <h1 class="title is-size-1"><%= @organization.name %></h1>
-        </div>
-        <div class="column is-4">
-          <%= link "New Project", to: Routes.dashboard_organization_project_path(@conn, :new, @organization), class: "button is-dark" %>
-        </div>
-      </div>
-        <div class="dashboard_organization">
-            <%= for organization_project <- @organization_projects do %>
-              <div class="columns">
-                <div class="column is-3">
-                  <%= link organization_project.name, to: Routes.dashboard_organization_project_path(@conn, :show, @organization, organization_project.id), class: "is-size-2 has-text-dark" %>
-                </div>
-                <div class="column">
-                  <%= link "Edit", to: Routes.dashboard_organization_project_path(@conn, :edit, @organization, organization_project.id), class: "button is-dark" %>
-                  <%= link "Delete", to: Routes.dashboard_organization_project_path(@conn, :delete, @organization, organization_project.id), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
-                </div>
-              </div>
-            <% end %>
-        </div>
+<%= render "topbar.html", conn: @conn, organization: @organization %>
+
+<div class="columns m-md">
+  <div class="column is-4">
+    <div class="box">
+      <%= link "New Project", to: Routes.dashboard_organization_project_path(@conn, :new, @organization), class: "button is-primary is-fullwidth" %>
+    </div>
+  </div>
+    <%= for organization_project <- @organization_projects do %>
+    <div class="box column is-3">
+      <%= link organization_project.name, to: Routes.dashboard_organization_project_path(@conn, :show, @organization, organization_project.id), class: "is-size-2 has-text-dark" %>
+      
+      <div class="buttons">
+        <%= link "Edit", to: Routes.dashboard_organization_project_path(@conn, :edit, @organization, organization_project.id), class: "button is-dark" %>
+        <%= link "Delete", to: Routes.dashboard_organization_project_path(@conn, :delete, @organization, organization_project.id), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
       </div>
     </div>
-  </section>
+    <% end %>
+
+</div>
+           
 

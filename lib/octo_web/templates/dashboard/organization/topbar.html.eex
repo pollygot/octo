@@ -1,0 +1,14 @@
+<nav class="page-header p-b-none">
+  <h4 class="title is-4 m-b-sm"><%= @organization.name %></h4>
+  <div class="tabs">
+    <ul>
+      <li class="is-active">
+        <%= link "Projects", to: Routes.dashboard_organization_path(@conn, :show, @organization), class: "" %>
+      </li>
+      <li><a>Team</a></li>
+      <li>
+        <%= link "Settings", to: Routes.dashboard_organization_path(@conn, :edit, @organization), class: "" %>
+      </li>
+    </ul>
+  </div>
+</nav>

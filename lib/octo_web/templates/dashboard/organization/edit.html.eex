@@ -1,10 +1,14 @@
-<section class="section">
-  <div class="container">
-    <h1 class="title is-size-1">Edit Organization</h1>
-    <div class="columns">
-    <div class="column is-4">
-        <%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_path(@conn, :update, @organization)) %>
+<%= render "topbar.html", conn: @conn, organization: @organization %>
+
+<div class="columns m-md is-centered">
+  <div class="column is-6">
+    <h4 class="title is-4">Settings</h4>
+    <div class="box">
+      <%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_path(@conn, :update, @organization)) %>
     </div>
-    </div>
+
+    <h4 class="title is-4">Danger zone</h4>
+    <%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, @organization), method: :delete, data: [confirm: "Are you sure?"], class: "button is-danger is-outlined is-fullwidth " %>
   </div>
-</section>
+</div>
+  

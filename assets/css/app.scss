@@ -2,12 +2,12 @@
 @charset "utf-8";
 
 // Import fonts
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700');
 
 /// BULMA
 
 // Set your brand colors
-$blue: #0d6eac;
+$blue: rgb(108, 95, 199);
 $grey-900: #202833;
 $grey-800: #404b5a;
 $grey-700: #6e7a8a;
@@ -20,7 +20,7 @@ $grey-100: #f8f9fa;
 $border-color-grey: $grey-300;
 
 // Update Bulma's global variables
-$family-sans-serif: Poppins, BlinkMacSystemFont, -apple-system, 'Segoe UI',
+$family-sans-serif: Muli, BlinkMacSystemFont, -apple-system, 'Segoe UI',
   'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   'Helvetica', 'Arial', sans-serif;
 $primary: $blue;
@@ -73,10 +73,63 @@ $positions: (('t', 'top'), ('r', 'right'), ('b', 'bottom'), ('l', 'left'));
 }
 // end spacing
 
-.dashboard_organization {
-  padding-left: 50px;
-  padding-bottom: 20px;
+html,
+body {
+  height: 100vh;
+  width: 100ww;
+  overflow: hidden;
 }
+.app {
+  min-height: 100vh;
+  min-width: 100ww;
+  overflow: hidden;
+  display: flex;
+}
+.sidebar {
+  background: linear-gradient(rgb(74, 62, 86), rgb(48, 40, 57));
+  width: 250px;
+  overflow: auto;
+  color: #fff;
+
+  .main-header {
+    .dropdown,
+    .dropdown-trigger {
+      width: 100%;
+    }
+    .media-left {
+      padding: 3px;
+      margin-right: 8px;
+    }
+  }
+  .menu-items {
+    padding: 1em;
+  }
+  .menu-item {
+    opacity: 0.7;
+    transition-duration: 200ms;
+    width: 100%;
+    display: flex;
+    span {
+      display: inline-block;
+      color: #fff;
+      margin: 5px;
+    }
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+.main {
+  flex-grow: 2;
+  overflow: auto;
+}
+.page {
+  padding: 10px;
+}
+.has-corners {
+ border-radius: 4px;
+}
+
 
 .dashboard_projects {
   padding-left: 50px;
@@ -93,5 +146,25 @@ $positions: (('t', 'top'), ('r', 'right'), ('b', 'bottom'), ('l', 'left'));
     padding: 5px 10px;
     box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.05);
     /*font-family: $header-family;*/
+  }
+}
+
+.page-header {
+  padding: 20px;
+  box-shadow: rgba(37, 11, 54, 0.04) 0px 2px 0px 0px;
+  .tabs {
+    ul, li {
+      border-bottom: none;
+      padding-right: 24px;
+      a {
+        padding-top: -5px;
+        border-bottom: 5px solid white;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+    li.is-active a {
+      border-color: $primary;
+    }
   }
 }

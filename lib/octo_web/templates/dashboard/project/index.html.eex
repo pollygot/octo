@@ -1,5 +1,5 @@
 <section class="section">
-  <div class="container">
+  <div class="">
     <div class="columns">
       <div class="column is-8">
         <h1 class="title is-1 has-text-dark"><%= @organization.name %></h1>

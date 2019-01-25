@@ -1,30 +1,31 @@
-<section class="section">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-8">
-        <h1 class="title is-1 has-text-dark">Organization List</h1>
-      </div>
-      <div class="column is-4">
-        <%= link "New Organization", to: Routes.dashboard_organization_path(@conn, :new), class: "button is-dark" %>
-      </div>
+<nav class="page-header level">
+  <!-- Left side -->
+  <div class="level-left">
+    <div class="level-item">
+      <h5 class="title is-4">Organizations</h5>
     </div>
-      <div class="dashboard_organization">
-           <%= for organization <- @organizations do %>
-            <div class="columns">
-              <div class="column is-3">
-                <%= link organization.name, to: Routes.dashboard_organization_path(@conn, :show, organization), class: "box is-size-2 has-text-dark" %>
-              </div>
-              <div class="column">
-                <%= link "Join", to: Routes.dashboard_organization_path(@conn, :add_customer_organization, organization), class: "button is-dark" %>
-                <%= link "Edit", to: Routes.dashboard_organization_path(@conn, :edit, organization), class: "button is-dark" %>
-                <%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, organization), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
-              </div>
-            </div>
-            <% end %>
-        </div>
-      </div>
-		</div>
   </div>
-</section>
+
+  <!-- Right side -->
+  <div class="level-right">
+    <p class="level-item">
+      <%= link "New Organization", to: Routes.dashboard_organization_path(@conn, :new), class: "button is-primary" %>
+    </p>
+  </div>
+</nav>
+
+  <div class="columns m-md">
+    <%= for organization <- @organizations do %>
+
+        <div class="column is-3">
+          <%= link to: Routes.dashboard_organization_path(@conn, :show, organization), class: "box" do %>
+            <h4 class="title is-5"><%= organization.name %></h4>
+          <% end %>
+          <%= link "Join", to: Routes.dashboard_organization_path(@conn, :add_customer_organization, organization), class: "button is-fullwidth m-b-sm" %>
+        </div>
+
+    <% end %>
+  </div>
+  
 
 
