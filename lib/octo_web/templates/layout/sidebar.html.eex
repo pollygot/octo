@@ -78,19 +78,22 @@
     </a>
   </div>
 
-  <div class="menu-items">
-    <a class="menu-item">
-      <span class="icon is-medium">
-        <i class="fas fa-key fa-lg"></i>
-      </span>
-      <span>API keys</span>
-    </a>
-    <a class="menu-item">
-      <span class="icon is-medium">
-        <i class="fas fa-cog fa-lg"></i>
-      </span>
-      <span>Settings</span>
-    </a>
-  </div>
+  <%= if assigns[:project] do %>
+    <div class="menu-items">
+      <a class="menu-item">
+        <span class="icon is-medium">
+          <i class="fas fa-key fa-lg"></i>
+        </span>
+        <span>API keys</span>
+      </a>
+      <a class="menu-item">
+        <span class="icon is-medium">
+          <i class="fas fa-cog fa-lg"></i>
+        </span>
+        <span>Settings</span>
+      </a>
+    </div>
+  <% end %>
+  
 
 </div>
