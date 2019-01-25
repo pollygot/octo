@@ -1,17 +1,77 @@
 /* This file is for your main application css. */
 @charset "utf-8";
-@import 'bulma';
 
 // Import fonts
-// @import url('https://fonts.googleapis.com/css?family=Baumans:300,400,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
 
-// override bulma
-// $header-family:Baumans;
+/// BULMA
 
-.navbar-item, .navbar-link, {
-  // font-family: $header-family;
-  font-weight: 700;
+// Set your brand colors
+$blue: #0d6eac;
+$grey-900: #202833;
+$grey-800: #404b5a;
+$grey-700: #6e7a8a;
+$grey-600: #929fb1;
+$grey-500: #adbdcc;
+$grey-400: #ccd4db;
+$grey-300: #d5dde5;
+$grey-200: #e1e7ec;
+$grey-100: #f8f9fa;
+$border-color-grey: $grey-300;
+
+// Update Bulma's global variables
+$family-sans-serif: Poppins, BlinkMacSystemFont, -apple-system, 'Segoe UI',
+  'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  'Helvetica', 'Arial', sans-serif;
+$primary: $blue;
+$body-size: 14px;
+
+// Import only what you need from Bulma
+@import '../node_modules/bulma/bulma.sass';
+
+
+// SPACING CSS - see usage: https://github.com/jgthms/bulma/issues/451#issuecomment-331758839
+$sizeUnit: rem;
+$marginKey: 'm';
+$paddingKey: 'p';
+$separator: '-';
+$sizes: (
+  ('none', 0),
+  ('xxs', 0.125),
+  ('xs', 0.25),
+  ('sm', 0.5),
+  ('md', 1),
+  ('lg', 2),
+  ('xl', 4),
+  ('xxl', 8)
+);
+$positions: (('t', 'top'), ('r', 'right'), ('b', 'bottom'), ('l', 'left'));
+
+@function sizeValue($key, $value) {
+  @return if($key == 'none', 0, $value + $sizeUnit);
 }
+
+@each $size in $sizes {
+  $sizeKey: nth($size, 1);
+  $sizeValue: nth($size, 2);
+  .#{$marginKey}#{$separator}#{$sizeKey} {
+    margin: sizeValue($sizeKey, $sizeValue) !important;
+  }
+  .#{$paddingKey}#{$separator}#{$sizeKey} {
+    padding: sizeValue($sizeKey, $sizeValue) !important;
+  }
+  @each $position in $positions {
+    $posKey: nth($position, 1);
+    $posValue: nth($position, 2);
+    .#{$marginKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
+      margin-#{$posValue}: sizeValue($sizeKey, $sizeValue) !important;
+    }
+    .#{$paddingKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
+      padding-#{$posValue}: sizeValue($sizeKey, $sizeValue) !important;
+    }
+  }
+}
+// end spacing
 
 .dashboard_organization {
   padding-left: 50px;
@@ -34,10 +94,4 @@
     box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.05);
     /*font-family: $header-family;*/
   }
-}
-
-
-@media (max-width: 768px) { /* Mobile devices */
-  
-
 }
