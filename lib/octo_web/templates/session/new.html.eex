@@ -1,34 +1,37 @@
 <section class="section">
   <div class="container">
-    <h1 class="title is-1 has-text-dark">Log in</h1>
-    <div class="columns">
+    <div class="columns is-centered">
 		  <div class="column is-4">
-		    <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session], fn f -> %>
-					<div class="field">
-					  <p class="control has-icons-left">
-					    <%= text_input f, :email, class: "input", placeholder: "Email" %>
-					    <span class="icon is-small is-left">
-					      <i class="fas fa-envelope"></i>
-					    </span>
-					  </p>
-					</div>
-					<div class="field">
-					  <p class="control has-icons-left">
-					    <%= password_input f, :password, class: "input", placeholder: "Password" %>
-					    <span class="icon is-small is-left">
-					      <i class="fas fa-lock"></i>
-					    </span>
-					  </p>
-					</div>
-					<br>
-					<div>
-					  <p class="control">
-					    <button class="button is-dark">
-					      Boom
-					    </button>
-					  </p>
-					</div>
-				<% end %>
+
+    		<h1 class="title is-3">Log in</h1>
+				
+				<div class="box">
+					<%= form_for @conn, Routes.session_path(@conn, :create), [as: :session], fn f -> %>
+						<div class="field">
+							<p class="control has-icons-left">
+								<%= text_input f, :email, class: "input", placeholder: "Email" %>
+								<span class="icon is-small is-left">
+									<i class="fas fa-envelope"></i>
+								</span>
+							</p>
+						</div>
+						<div class="field">
+							<p class="control has-icons-left">
+								<%= password_input f, :password, class: "input", placeholder: "Password" %>
+								<span class="icon is-small is-left">
+									<i class="fas fa-lock"></i>
+								</span>
+							</p>
+						</div>
+						<div>
+							<p class="control">
+								<button class="button is-primary is-fullwidth">
+									Log in
+								</button>
+							</p>
+						</div>
+					<% end %>
+				</div>
 		  </div>
 		</div>
   </div>

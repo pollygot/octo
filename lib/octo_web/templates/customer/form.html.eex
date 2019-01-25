@@ -13,35 +13,31 @@
     </p>
   </div>
 
-  <div>
-    <%= inputs_for f, :credential, fn cf -> %>
-      <div class="field">
-        <p class="control has-icons-left">
-          <%= text_input cf, :email, class: "input", placeholder: "Email" %>
-          <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
-          </span>
-          <%= error_tag cf, :email %>
-        </p>
-      </div>
-      <div class="field">
-        <p class="control has-icons-left">
-          <%= password_input cf, :password, class: "input", placeholder: "Password" %>
-          <span class="icon is-small is-left">
-            <i class="fas fa-lock"></i>
-          </span>
-          <%= error_tag cf, :password %>
-        </p>
-      </div>
-    <% end %>
-  </div>
+  <%= inputs_for f, :credential, fn cf -> %>
+    <div class="field">
+      <p class="control has-icons-left">
+        <%= text_input cf, :email, class: "input", placeholder: "Email" %>
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <%= error_tag cf, :email %>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control has-icons-left">
+        <%= password_input cf, :password, class: "input", placeholder: "Password" %>
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+        <%= error_tag cf, :password %>
+      </p>
+    </div>
+  <% end %>
   
-  <br>
-  
-  <div class="form-group">
+  <div class="field">
     <p class="control">
-      <button class="button is-dark">
-        Boom
+      <button class="button is-primary is-fullwidth">
+        Register
       </button>
     </p>
   </div>

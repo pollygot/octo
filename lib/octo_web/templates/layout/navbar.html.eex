@@ -53,11 +53,11 @@
           <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_customer), method: "delete", class: "has-text-dark" %>
         </div>
       <% else %>
-        <div class="navbar-item">
-          <%= link "Log in", to: Routes.session_path(@conn, :new), class: "has-text-dark" %>
+        <div class="navbar-item p-r-none">
+          <%= link "Log in", to: Routes.session_path(@conn, :new), class: "button is-primary is-outlined" %>
         </div>
         <div class="navbar-item">
-          <%= link "Register", to: Routes.customer_path(@conn, :new), class: "has-text-dark" %>
+          <%= link "Register", to: Routes.customer_path(@conn, :new), class: "button is-primary" %>
         </div>
       <% end %>
     </div>
