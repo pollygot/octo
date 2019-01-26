@@ -2,35 +2,13 @@
 
   <div class="level-left">
     <div class="level-item">
-
-        <div class="dropdown is-hoverable">
-          <div class="dropdown-trigger">
-            <button class="button">
-              <span><%= @project.name %></span>
-              <span class="icon is-small"><i class="fas fa-angle-down"></i></span>
-            </button>
-          </div>
-
-          <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-            <div class="dropdown-content">
-
-              <%= for project <- @organization.projects do %>
-                <a href="#" class="dropdown-item">
-                  <%= project.name %>
-                </a>
-              <% end %>
-
-              <hr class="dropdown-divider">
-              <%= 
-                link "Create new", to: Routes.dashboard_organization_project_path(@conn, :new, @organization), 
-                class: "dropdown-item" %>
-            </div>
-          </div>
-        </div>
-
+      <%= 
+        link to: Routes.dashboard_organization_project_flag_path(@conn, :index, @organization, @project),
+        class: "button" do %>
+        <span class="icon is-small"><i class="fas fa-arrow-left"></i></span>
+      <%= end %>
     </div>
   </div>
-
   <div class="level-right">
     <div class="level-item">
       <div class="dropdown is-right is-hoverable">
@@ -56,6 +34,4 @@
       </div>
     </div>
   </div>
-  
-  
 </nav>

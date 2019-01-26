@@ -9,7 +9,7 @@
 
   <nav class="level">
     <div class="level-left">
-      <h4 class="title is-5"><%= @project.name %> Flags</h4>
+      <h4 class="title is-5">Flags</h4>
     </div>
     <div class="level-right">
       <div class="level-item">

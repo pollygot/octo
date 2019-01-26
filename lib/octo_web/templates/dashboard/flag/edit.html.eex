@@ -1,5 +1,19 @@
-<h1>Edit Flag</h1>
+<%= 
+  render "topbar.html", 
+  conn: @conn, 
+  organization: @organization, 
+  project: @project 
+%>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_project_flag_path(@conn, :update, @organization, @project, @flag)) %>
 
-<span><%= link "Back", to: Routes.dashboard_organization_project_flag_path(@conn, :index, @organization, @project) %></span>
+<div class="m-xl">
+  <div class="columns is-centered">
+    <div class="column is-6">
+      <h1 class="title is-3">Edit Flag</h1>
+      <div class="box">
+        <%= render "form.html", 
+          Map.put(assigns, :action, Routes.dashboard_organization_project_flag_path(@conn, :update, @organization, @project, @flag)) %>
+      </div>
+    </div>
+  </div>
+</div>

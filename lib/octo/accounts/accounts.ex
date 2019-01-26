@@ -115,7 +115,8 @@ defmodule Octo.Accounts do
     Repo.all(Organization)
   end
 
-  def get_organization!(id), do: Repo.get!(Organization, id)
+  def get_organization!(id), do: Repo.get!(Organization, id) |> Repo.preload(projects: :organization)
+  # def get_organization!(id), do: Repo.get!(Organization, id)  |> Repo.preload(projects: :projects)
 
   def update_organization(%Organization{} = organization, attrs) do
     organization
