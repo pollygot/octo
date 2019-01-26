@@ -28,7 +28,7 @@ defmodule OctoWeb.Dashboard.ProjectController do
       {:ok, project} ->
         conn
         |> put_flash(:info, "Project created successfully.")
-        |> redirect(to: Routes.dashboard_organization_project_path(conn, :show, organization, project))
+        |> redirect(to: Routes.dashboard_organization_project_flag_path(conn, :index, organization, project))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, organization: organization)

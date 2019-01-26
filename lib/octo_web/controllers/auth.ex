@@ -17,7 +17,7 @@ defmodule OctoWeb.Auth do
     |> assign(:current_customer, customer)
     |> put_session(:customer_id, customer.id)
     |> configure_session(renew: true)
-    |> redirect(to: Routes.dashboard_page_path(conn, :index))
+    |> redirect(to: Routes.dashboard_organization_path(conn, :index))
   end
 
   def login_by_email_and_pass(conn, email, given_pass) do

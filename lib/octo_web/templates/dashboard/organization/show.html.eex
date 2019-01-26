@@ -10,12 +10,6 @@
         <% end %>
       </div>
     <% end %>
-
-    <div class="column is-3">
-      <div class="box">
-        <%= link "New Project", to: Routes.dashboard_organization_project_path(@conn, :new, @organization), class: "" %>
-      </div>
-    </div>
 </div>
            
 

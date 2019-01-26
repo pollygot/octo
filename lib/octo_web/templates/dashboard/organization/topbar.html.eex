@@ -1,5 +1,12 @@
 <nav class="page-header p-b-none">
-  <h4 class="title is-4 m-b-sm"><%= @organization.name %></h4>
+  <nav class="level">
+    <div class="level-left">
+      <h4 class="title is-4 m-b-sm"><%= @organization.name %></h4>
+    </div>
+    <div class="level-right">
+      <%= link "New Project", to: Routes.dashboard_organization_project_path(@conn, :new, @organization), class: "button is-primary" %>
+    </div>
+  </nav>
   <div class="tabs">
     <ul>
       <li class="is-active">

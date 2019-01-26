@@ -13,12 +13,12 @@ defmodule OctoWeb.Dashboard.OrganizationController do
       {:ok, _organization} ->
         conn
         |> put_flash(:info, "Organization joined!")
-        |> redirect(to: Routes.dashboard_page_path(conn, :index))
+        |> redirect(to: Routes.dashboard_organization_path(conn, :index))
 
       {:error, %Ecto.Changeset{}} ->
         conn
         |> put_flash(:info, "Hmm...something went wrong!")
-        |> redirect(to: Routes.dashboard_page_path(conn, :index))
+        |> redirect(to: Routes.dashboard_organization_path(conn, :index))
     end
   end
 
@@ -38,7 +38,7 @@ defmodule OctoWeb.Dashboard.OrganizationController do
       {:ok, _organization} ->
         conn
         |> put_flash(:info, "Organization created successfully.")
-        |> redirect(to: Routes.dashboard_page_path(conn, :index))
+        |> redirect(to: Routes.dashboard_organization_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
