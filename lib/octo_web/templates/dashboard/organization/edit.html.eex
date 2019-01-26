@@ -8,7 +8,11 @@
     </div>
 
     <h4 class="title is-4">Danger zone</h4>
-    <%= link "Delete", to: Routes.dashboard_organization_path(@conn, :delete, @organization), method: :delete, data: [confirm: "Are you sure?"], class: "button is-danger is-outlined is-fullwidth " %>
+    <%= 
+      link "Delete", 
+      to: Routes.dashboard_organization_path(@conn, :delete, @organization), 
+      method: :delete, data: [confirm: "Are you sure?"], 
+      class: "button is-danger is-outlined is-fullwidth " %>
   </div>
 </div>
   

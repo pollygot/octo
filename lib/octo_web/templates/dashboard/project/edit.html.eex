@@ -1,10 +1,19 @@
-<section class="section">
-  <div class="">
-    <h1 class="title is-size-1">Edit Project</h1>
-    <div class="columns">
-      <div class="column is-4">
-        <%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_project_path(@conn, :update, @organization, @project)) %>
-      </div>
+<%= render "topbar_settings.html", conn: @conn, organization: @organization, project: @project %>
+
+<div class="columns m-md is-centered">
+  <div class="column is-6">
+    <h4 class="title is-4">Settings</h4>
+    <div class="box">
+      <%= render "form.html", Map.put(assigns, :action, Routes.dashboard_organization_project_path(@conn, :update, @organization, @project)) %>
     </div>
+
+    <h4 class="title is-4">Danger zone</h4>
+    
+    <%= 
+      link "Delete", 
+      to: Routes.dashboard_organization_project_path(@conn, :delete, @organization, @project.id),
+      method: :delete, data: [confirm: "Are you sure?"], 
+      class: "button is-danger is-outlined is-fullwidth " %>
   </div>
-</section>
+</div>
+  

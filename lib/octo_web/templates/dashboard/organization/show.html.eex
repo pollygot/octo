@@ -1,10 +1,10 @@
 <%= render "topbar.html", conn: @conn, organization: @organization %>
 
 <div class="columns m-md">
-    <%= for organization_project <- @organization_projects do %>
+    <%= for project <- @organization_projects do %>
       <div class="column is-3">
-        <%= link to: Routes.dashboard_organization_project_path(@conn, :show, @organization, organization_project.id), class: "box" do %>
-          <h4 class="title is-5"><%= organization_project.name %></h4>
+        <%= link to: Routes.dashboard_organization_project_flag_path(@conn, :index, @organization, project), class: "box" do %>
+          <h4 class="title is-5"><%= project.name %></h4>
         <% end %>
       </div>
     <% end %>

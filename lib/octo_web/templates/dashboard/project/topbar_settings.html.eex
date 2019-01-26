@@ -1,0 +1,13 @@
+<nav class="page-header p-b-none">
+  <h4 class="title is-4 m-b-sm"><%= @project.name %></h4>
+  <div class="tabs">
+    <ul>
+      <li>
+        <%= link "API keys", to: Routes.dashboard_organization_project_path(@conn, :edit, @organization, @project.id), class: "menu-item" %>
+      </li>
+      <li class="is-active">
+        <%= link "Settings", to: Routes.dashboard_organization_project_path(@conn, :edit, @organization, @project.id), class: "menu-item" %>
+      </li>
+    </ul>
+  </div>
+</nav>

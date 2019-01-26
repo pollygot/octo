@@ -10,34 +10,24 @@
               </p>
             </figure>
             <div class="media-content ">
-              <h3 class="title is-5 has-text-white">Project Name</h3>
-              <p class="has-text-white subtitle is-size-6">Environment</p>
+              <h3 class="title is-5 has-text-white">Org Name</h3>
+              <p class="has-text-white subtitle is-size-6">User</p>
             </div>
           </article>
       </div>
       <div class="dropdown-menu" id="dropdown-  menu4" role="menu">
         <div class="dropdown-content">
           <div class="dropdown-item">
-            <p class="heading">Environments</p>
-          </div>
-          <a href="#" class="dropdown-item">
-            Production
-          </a>
-          <a href="#" class="dropdown-item">
-            Dev
-          </a>
-          <a href="#" class="dropdown-item">
-            Create new
-          </a>
-          <hr class="dropdown-divider">
-          <div class="dropdown-item">
             <h3 class="title is-5">Org name</h3>
           </div>
           <a href="#" class="dropdown-item">
-            Organization settings
+            Settings
           </a>
           <a href="/dashboard/organizations" class="dropdown-item">
             Switch organization
+          </a>
+          <a href="/dashboard/organizations" class="dropdown-item">
+            Create new
           </a>
           
           <%= if @current_customer do %>
