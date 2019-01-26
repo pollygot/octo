@@ -1,12 +1,20 @@
-<section class="section">
-  <div class="">
-    <div class="columns is-centered">
-		  <div class="column is-4">
+<%= 
+  render OctoWeb.PageView, "navbar.html", 
+  conn: @conn
+%>
 
-    		<h1 class="title is-3">Log in</h1>
-				
+<section class="hero is-primary is-bold is-fullheight-with-navbar">
+  <div class="hero-body">
+  <div class="container">
+    <div class="columns">
+		  <div class="column is-6">
+    		<h1 class="title is-3">Login</h1>
+				<p>Some text</p>
+		  </div>
+		  <div class="column is-6">
+        
 				<div class="box">
-					<%= form_for @conn, Routes.session_path(@conn, :create), [as: :session], fn f -> %>
+          <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session], fn f -> %>
 						<div class="field">
 							<p class="control has-icons-left">
 								<%= text_input f, :email, class: "input", placeholder: "Email" %>
@@ -31,8 +39,9 @@
 							</p>
 						</div>
 					<% end %>
-				</div>
+		    </div>
 		  </div>
 		</div>
+  </div>
   </div>
 </section>

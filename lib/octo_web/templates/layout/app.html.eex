@@ -12,18 +12,15 @@
   <body class="">
 
     <div class="app">
-      
-      <%# <header class="header">
-      <%= render "navbar.html", conn: @conn, current_customer: @current_customer 
-      </header> 
-      %>
-
-      <%= render "sidebar.html", 
-        conn: @conn,
-        current_customer: Map.get(@conn.assigns, :current_customer), 
-        project: Map.get(@conn.assigns, :project), 
-        organization: Map.get(@conn.assigns, :organization) 
-      %>
+  
+      <%= if Map.get(@conn.assigns, :current_customer) do %>
+        <%= render "sidebar.html", 
+          conn: @conn,
+          current_customer: Map.get(@conn.assigns, :current_customer), 
+          project: Map.get(@conn.assigns, :project), 
+          organization: Map.get(@conn.assigns, :organization) 
+        %>
+      <% end %>
         
         <div class="main">
 

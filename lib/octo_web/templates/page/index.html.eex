@@ -1,2 +1,12 @@
-<h1>Landing page</h1>
+<%= render "navbar.html", conn: @conn, current_customer: @current_customer %> 
+
+<div class="hero is-large is-primary">
+  <div class="hero-body">
+    <h1 class="title is-2">Octo</h1>
+    <div class="buttons">
+      <%= link "Get Started", to: Routes.customer_path(@conn, :new), class: "button" %>
+    </div>
+  </div>
+</div>
+
 
