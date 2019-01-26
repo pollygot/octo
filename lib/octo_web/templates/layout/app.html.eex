@@ -18,7 +18,12 @@
       </header> 
       %>
 
-      <%= render "sidebar.html", conn: @conn, current_customer: @current_customer %>
+      <%= render "sidebar.html", 
+        conn: @conn,
+        current_customer: Map.get(@conn.assigns, :current_customer), 
+        project: Map.get(@conn.assigns, :project), 
+        organization: Map.get(@conn.assigns, :organization) 
+      %>
         
         <div class="main">
 

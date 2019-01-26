@@ -51,8 +51,6 @@ defmodule OctoWeb.Dashboard.OrganizationController do
     render(conn, "show.html", organization: organization, organization_projects: organization_projects)
   end
 
-
-
   def edit(conn, %{"id" => id}) do
     organization = Accounts.get_organization!(id)
     changeset = Accounts.change_organization(organization)
