@@ -5,33 +5,60 @@
   project: @project 
 %>
 
-<section class="section">
-    <div class="">
-      <div class="columns">
-        <div class="column is-8">
-          <h1 class="title is-size-1"><%= @project.name %> - Flags</h1>
-        </div>
-        <div class="column is-4">
-          <%= link "New Flag", to: Routes.dashboard_organization_project_flag_path(@conn, :new, @organization, @project), class: "button is-dark" %>
-        </div>
+<div class="m-md">
+
+  <nav class="level">
+    <div class="level-left">
+      <h4 class="title is-5"><%= @project.name %> Flags</h4>
+    </div>
+    <div class="level-right">
+      <div class="level-item">
+        <%= 
+          link "New Flag", 
+          to: Routes.dashboard_organization_project_flag_path(@conn, :new, @organization, @project), 
+          class: "button is-primary" %>
       </div>
-      <div class="dashboard_organization">
-        <h1 class="is-size-2 has-text-dark">Flag List</h1>
-        <div class="dashboard_projects">
-          <%= for flag <- @flags do %>
-            <div class="columns">
-              <div class="column is-4">
-                <%= link flag.name, to: Routes.dashboard_organization_project_flag_path(@conn, :show, @organization, @project, flag), class: "is-size-3 has-text-dark" %>
-              </div>
-              <div class="column is-3">
-                <%= link flag.is_on, to: Routes.dashboard_organization_project_flag_path(@conn, :show, @organization, @project, flag), class: "is-size-3 has-text-dark" %>
-              </div>
-              <div class="column is-3">
-                <%= link "Delete", to: Routes.dashboard_organization_project_flag_path(@conn, :delete, @organization, @project, flag), method: :delete, data: [confirm: "Are you sure?"], class: "button is-dark" %>
-              </div>
-            </div>
-          <% end %>
+    </div>
+  </nav>
+  
+  <div class="has-border has-corners p-sm">
+    <div class="columns has-background-light">
+      <div class="column is-5">
+        <div class="control has-icons-left">
+          <input class="input" type="text" placeholder="Find flag" >
+          <span class="icon is-small is-left"><i class="fas fa-search"></i></span>
         </div>
       </div>
     </div>
-  </section>
+  
+    <%= for flag <- @flags do %>
+      <div class="columns">
+        <div class="column">
+          <%= link flag.name, to: Routes.dashboard_organization_project_flag_path(@conn, :show, @organization, @project, flag), class: "" %>
+        </div>
+        <div class="column is-1 has-text-right">
+
+          <div class="field p-xs">
+            <%= if flag.is_on do %>
+            <input id="<%= flag.id %>" type="checkbox" name="<%= flag.id %>" class="switch is-rounded" checked="checked">
+            <% else %>
+              <input id="<%= flag.id %>" type="checkbox" name="<%= flag.id %>" class="switch is-rounded">
+            <% end %>
+            <label for="<%= flag.id %>">&nbsp</label>
+          </div>
+          <%# <%= link flag.is_on, to: Routes.dashboard_organization_project_flag_path(@conn, :show, @organization, @project, flag), class: "" %>
+        </div>
+        <div class="column is-1 has-text-right">
+          <%= link "Delete", 
+            to: Routes.dashboard_organization_project_flag_path(@conn, :delete, @organization, @project, flag), 
+            method: :delete, 
+            data: [confirm: "Are you sure?"], 
+            class: "button is-danger is-small is-rounded is-outlined" %>
+        </div>
+      </div>
+    <% end %>
+
+    
+  </div>
+</div>
+      

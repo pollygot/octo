@@ -28,6 +28,11 @@ $body-size: 14px;
 
 // Import only what you need from Bulma
 @import '../node_modules/bulma/bulma.sass';
+// @import '../node_modules/bulma-extensions/bulma-checkradio/dist/css/bulma-checkradio.sass';
+// @import '../node_modules/bulma-extensions/bulma-slider/dist/css/bulma-slider.sass';
+// @import '../node_modules/bulma-extensions/bulma-divider/dist/css/bulma-divider.sass';
+@import '../node_modules/bulma-extensions/bulma-switch/dist/css/bulma-switch.sass';
+// @import '../node_modules/bulma-extensions/bulma-quickview/dist/css/bulma-quickview.sass';
 
 
 // SPACING CSS - see usage: https://github.com/jgthms/bulma/issues/451#issuecomment-331758839
@@ -128,11 +133,10 @@ body {
 }
 .has-corners {
  border-radius: 4px;
+ overflow: hidden;
 }
-
-
-.dashboard_projects {
-  padding-left: 50px;
+.has-border {
+  border: 1px solid $grey-300;
 }
 
 #toast {

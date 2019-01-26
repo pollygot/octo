@@ -1,3 +1,11 @@
+<%= 
+  render OctoWeb.Dashboard.ProjectView, "topbar_project.html", 
+  conn: @conn, 
+  organization: @organization, 
+  project: @project 
+%>
+
+
 <section class="section">
     <div class="">
       <div class="columns">
